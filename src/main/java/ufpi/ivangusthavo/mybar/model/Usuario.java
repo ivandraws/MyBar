@@ -9,13 +9,11 @@ import jakarta.persistence.Id;
 
 public class Usuario {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
     private String nome;
     private String email;
     private String senha;
-    private String telefone;
+    private String tipo;
 
     public int getId() {
         return id;
@@ -49,11 +47,11 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public String getTelefone() {
-        return telefone;
+    public String getTipo() {
+        return tipo;
     }
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 }
