@@ -1,26 +1,23 @@
 package ufpi.ivangusthavo.mybar.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
-
+@Table(name = "usuario")
 public class Usuario {
     @Id
-    private int id;
+    private int codigo;
     private String nome;
     private String email;
     private String senha;
     private String tipo;
 
-    public int getId() {
-        return id;
+    public int getCodigo() {
+        return codigo;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setCodigo(int id) {
+        this.codigo = id;
     }
 
     public String getNome() {
@@ -55,3 +52,4 @@ public class Usuario {
         this.tipo = tipo;
     }
 }
+
