@@ -2,7 +2,7 @@ package ufpi.ivangusthavo.mybar.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import ufpi.ivangusthavo.mybar.dao.InterfaceUsuario;
+import ufpi.ivangusthavo.mybar.repository.InterfaceUsuario;
 import ufpi.ivangusthavo.mybar.model.Usuario;
 
 import java.util.List;
@@ -36,7 +36,7 @@ public class UsuarioController {
         return novo;
     }
     @DeleteMapping("/{id}")
-    public Optional<?> removerUsuario(@PathVariable Integer id)
+    public Optional<Usuario> removerUsuario(@PathVariable Integer id)
     {
         Optional<Usuario> usu = dao.findById(id);
         dao.deleteById(id);

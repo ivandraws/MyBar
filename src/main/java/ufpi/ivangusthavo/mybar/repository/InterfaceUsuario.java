@@ -1,4 +1,4 @@
-package ufpi.ivangusthavo.mybar.dao;
+package ufpi.ivangusthavo.mybar.repository;
 
 import org.springframework.data.repository.CrudRepository;
 import ufpi.ivangusthavo.mybar.model.Usuario;
