@@ -6,11 +6,21 @@ import jakarta.persistence.*;
 @Table(name = "usuario")
 public class Usuario {
     @Id
+    @Column(name = "codigo", nullable = false, unique = true)
     private int codigo;
+
+    @Column(name = "nome", length = 255, nullable = false)
     private String nome;
+
+    @Column(name = "email", length = 150, nullable = false)
     private String email;
+
+    @Column(name = "senha", nullable = false)
     private String senha;
-    private String tipo;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "tipo", nullable = false)
+    private TipoUsuario tipo;
 
     public int getCodigo() {
         return codigo;
@@ -44,11 +54,11 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public String getTipo() {
+    public TipoUsuario getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(TipoUsuario tipo) {
         this.tipo = tipo;
     }
 }

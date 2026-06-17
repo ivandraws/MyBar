@@ -1,8 +1,8 @@
 package ufpi.ivangusthavo.mybar.model;
 
 public enum TipoUsuario {
-    ADMINISTRADOR,
+    ADMIN,
     COZINHA,
-    GARÇOM,
+    GARCOM,
     ATENDENTE_BALCAO
 }
