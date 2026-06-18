@@ -1,0 +1,79 @@
+:root {
+    /* Cores Principais */
+    --brand-terracotta: #B56152; /* Accent primário */
+    --brand-teal: #749A96;       /* Accent secundário */
+    --brand-sage: #DDE3C0;       /* Superfícies leves */
+    --brand-taupe: #948466;      /* Texto secundário/borders */
+    
+    /* Neutras */
+    --text-dark: #343434;        /* Texto primário */
+    --bg-white: #FFFFFF;         /* Fundo principal */
+    --bg-offwhite: #F7F6F3;      /* Superfícies neutras */
+}
+.bg-brand {
+    background-color: var(--brand-terracotta);
+}
+
+
+.text-main {
+    color: var(--text-dark) !important;
+}
+
+.text-taupe {
+    color: var(--brand-taupe) !important;
+}
+.link-teal {
+    color: var(--brand-teal);
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.link-teal:hover {
+    color: #5a7a77; 
+}
+
+
+.btn-brand {
+    background-color: var(--brand-terracotta);
+    border-color: var(--brand-terracotta);
+    color: #FFFFFF;
+    transition: all 0.3s ease;
+}
+
+.btn-brand:hover {
+    background-color: #964f42; 
+    border-color: #964f42;
+    color: #FFFFFF;
+}
+
+
+/* CLASSE PARA O CONTÊINER DO LOGOTIPO (O QUADRADO) */
+.logo-box {
+    /* Forma e Tamanho */
+    width: 100px;  /* Largura fixa para torná-lo um quadrado */
+    height: 100px; /* Altura fixa para torná-lo um quadrado */
+    
+    /* Visual Treatment */
+    background-color: #FFFFFF; /* Fundo branco puro do design */
+    border-radius: 25px; /* Cantos arredondados e suaves */
+    
+    /* Alinhamento Interno (para centralizar o "MB") */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    /* Estilização do Texto Dentro da Caixa */
+    color: #2c3e50; /* Use uma cor de texto escura e profunda para contrastar com o branco (pode ser a cor escura do formulário) */
+    font-size: 2.5rem; /* Aumenta o tamanho da fonte "MB" para preencher a caixa */
+}
+
+/* Ajuste sutil na cor do texto pequeno para ficar mais refinado */
+.text-white-50 {
+    color: rgba(255, 255, 255, 0.6) !important;
+}
+
+/* Customizando o foco (clique) no campo de texto para usar o Terracota */
+.form-control:focus {
+    border-color: var(--brand-terracotta);
+    box-shadow: 0 0 0 0.25rem rgba(181, 97, 82, 0.25);
+}
