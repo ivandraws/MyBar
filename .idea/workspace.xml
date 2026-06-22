@@ -4,13 +4,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="16c14c7c-896e-4fb2-9050-1d3014d9ce26" name="Changes" comment="reoganização" />
+    <list default="true" id="16c14c7c-896e-4fb2-9050-1d3014d9ce26" name="Changes" comment="reoganização">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/ufpi/ivangusthavo/mybar/MyBarApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/test/java/ufpi/ivangusthavo/mybar/MyBarApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ufpi/ivangusthavo/mybar/controller/ClienteController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ufpi/ivangusthavo/mybar/controller/UsuarioController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ufpi/ivangusthavo/mybar/model/Cliente.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ufpi/ivangusthavo/mybar/model/Configuracao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ufpi/ivangusthavo/mybar/model/Sexo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ufpi/ivangusthavo/mybar/model/TipoUsuario.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ufpi/ivangusthavo/mybar/model/Usuario.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ufpi/ivangusthavo/mybar/repository/InterfaceCliente.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ufpi/ivangusthavo/mybar/repository/InterfaceUsuario.java" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="98b58cf1e079f39fb042d3847c941c26547a2b03" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MacroExpansionManager">
@@ -77,10 +96,34 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "git-widget-placeholder": "gusthavo",
-    "node.js.selected.package.tslint": "(autodetect)"
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "Spring Boot.MyBarAplication.executor": "Run",
+    "git-widget-placeholder": "main",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/backend" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="MyBarAplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="MyBar" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="ufpi.ivangusthavo.mybar.MyBarApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
   <component name="TaskManager">
     <task id="LOCAL-00001" summary="reoganização">
       <option name="closed" value="true" />
