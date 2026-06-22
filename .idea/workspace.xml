@@ -4,19 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="16c14c7c-896e-4fb2-9050-1d3014d9ce26" name="Changes" comment="Mudanças essenciais do projeto">
-      <change beforePath="$PROJECT_DIR$/target/classes/application.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ufpi/ivangusthavo/mybar/MyBarApplication.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ufpi/ivangusthavo/mybar/controller/ClienteController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ufpi/ivangusthavo/mybar/controller/UsuarioController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ufpi/ivangusthavo/mybar/model/Cliente.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ufpi/ivangusthavo/mybar/model/Configuracao.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ufpi/ivangusthavo/mybar/model/Sexo.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ufpi/ivangusthavo/mybar/model/TipoUsuario.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ufpi/ivangusthavo/mybar/model/Usuario.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ufpi/ivangusthavo/mybar/repository/InterfaceCliente.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/ufpi/ivangusthavo/mybar/repository/InterfaceUsuario.class" beforeDir="false" />
-    </list>
+    <list default="true" id="16c14c7c-896e-4fb2-9050-1d3014d9ce26" name="Changes" comment="Atualizado gitignore" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -147,13 +135,31 @@
       <option name="project" value="LOCAL" />
       <updated>1782130411778</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Alterado estruturação do projeto">
+      <option name="closed" value="true" />
+      <created>1782130708379</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1782130708379</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Atualizado gitignore">
+      <option name="closed" value="true" />
+      <created>1782130842415</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1782130842415</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="reoganização" />
     <MESSAGE value="Refatorado estrutura do projeto a fim de que funcione sem problemas durante produção" />
     <MESSAGE value="Mudanças essenciais do projeto" />
-    <option name="LAST_COMMIT_MESSAGE" value="Mudanças essenciais do projeto" />
+    <MESSAGE value="Alterado estruturação do projeto" />
+    <MESSAGE value="Atualizado gitignore" />
+    <option name="LAST_COMMIT_MESSAGE" value="Atualizado gitignore" />
   </component>
 </project>
