@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="16c14c7c-896e-4fb2-9050-1d3014d9ce26" name="Changes" comment="Atualizado gitignore" />
+    <list default="true" id="16c14c7c-896e-4fb2-9050-1d3014d9ce26" name="Changes" comment="workspace (nn entendi essa mudança, mas só por preucaução)">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -151,7 +153,15 @@
       <option name="project" value="LOCAL" />
       <updated>1782130842415</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="workspace (nn entendi essa mudança, mas só por preucaução)">
+      <option name="closed" value="true" />
+      <created>1782131187973</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1782131187973</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -160,6 +170,7 @@
     <MESSAGE value="Mudanças essenciais do projeto" />
     <MESSAGE value="Alterado estruturação do projeto" />
     <MESSAGE value="Atualizado gitignore" />
-    <option name="LAST_COMMIT_MESSAGE" value="Atualizado gitignore" />
+    <MESSAGE value="workspace (nn entendi essa mudança, mas só por preucaução)" />
+    <option name="LAST_COMMIT_MESSAGE" value="workspace (nn entendi essa mudança, mas só por preucaução)" />
   </component>
 </project>
