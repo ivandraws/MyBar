@@ -40,32 +40,52 @@
         <header class="top-bar p-3 border-bottom">
         </header>
 
-        <div class="d-flex flex-grow-1 p-3 gap-3 overflow-auto">
-
-        <div class="d-flex flex-column flex-grow-1 gap-3">
-            <div class="cards-area">
-                    <div class="row g-3"> 
-                        <div class="col-4">
-                <div class="card p-3 border-0 shadow-sm">Contas Abertas</div>
-            </div>
-            <div class="col-4">
-                <div class="card p-3 border-0 shadow-sm">Faturamento Hoje</div>
-            </div>
-            <div class="col-4">
-                <div class="card p-3 border-0 shadow-sm">Fila Cozinha</div>
-            </div>
+      <div class="d-flex flex-column flex-grow-1 gap-4">
+    
+   <div class="row g-3">
+    <div class="col-4">
+        <div class="card p-4 border-0 shadow-sm card-brand">
+            <small class="text-taupe">Contas Abertas</small>
+            <h2 class="fw-bold text-main my-2">24</h2>
+            <small class="text-brand">+3 abertas agora</small>
         </div>
-            </div>
-            <div class="pedidos-table">
-            <!-- tabela aqui -->
-            </div>
-        </div>
+    </div>
 
-        <aside class="kitchen-feed" style="width: 280px; flex-shrink: 0;">
-            <!-- feed cozinha aqui -->
-        </aside>
-
+    <div class="col-4">
+        <div class="card p-4 border-0 shadow-sm card-teal">
+            <small class="text-taupe">Faturamento Hoje</small>
+            <h2 class="fw-bold text-main my-2">R$ 4.820</h2>
+            <small style="color: var(--brand-teal);">+12% vs ontem</small>
         </div>
+    </div>
+
+    <div class="col-4">
+        <div class="card p-4 border-0 shadow-sm card-sage">
+            <small class="text-taupe">Fila Cozinha</small>
+            <h2 class="fw-bold text-main my-2">7</h2>
+            <small style="color: var(--brand-sage);">2 com atraso</small>
+        </div>
+    </div>
+</div>
+
+    <div class="card p-4 border-0 shadow-sm rounded-4">
+        <table class="table align-middle">
+            <thead>
+                <tr class="text-taupe small">
+                    <th>Nº</th>
+                    <th>Cliente</th>
+                    <th>Garçom</th>
+                    <th>Itens</th>
+                    <th>Total</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody id="pedidos-tbody">
+                </tbody>
+        </table>
+    </div>
+</div>
     </main>
     </div>
 </body>

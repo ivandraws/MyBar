@@ -103,3 +103,40 @@
 /* Ajuste nos textos */
 .text-taupe { color: var(--brand-taupe); }
 .text-main { color: var(--text-dark); }
+
+/* Cantos arredondados premium */
+.rounded-4 { border-radius: 1.2rem !important; }
+
+/* Ajustes finos na tabela */
+.table {
+    border-collapse: separate;
+    border-spacing: 0 10px; /* Dá um respiro entre as linhas da tabela */
+}
+
+.table thead th {
+    border-bottom: 2px solid #F7F6F3;
+    padding-bottom: 1rem;
+}
+
+/* Badge estilizado (para usar no JS depois) */
+.badge {
+    padding: 0.5em 0.8em;
+    font-weight: 500;
+}
+/* Estilo base para os cards */
+.card {
+    border-radius: 1rem !important; /* Arredondamento conforme design */
+}
+
+/* Criando o efeito de borda lateral colorida */
+.card-brand {
+    border-left: 6px solid var(--brand-terracotta) !important;
+}
+
+.card-teal {
+    border-left: 6px solid var(--brand-teal) !important;
+}
+
+.card-sage {
+    border-left: 6px solid var(--brand-sage) !important;
+}
