@@ -1,45 +1,66 @@
 package ufpi.ivangusthavo.mybar.model;
 
+import jakarta.persistence.*;
+
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
+@Entity
+@Table(name = "configuracao")
 public class Configuracao {
-    private double valorIngMasc;
-    private double valorIngFem;
-    private int operation;
-    private LocalDate dia;
+    @Id
+    private Integer id = 1;
+    @Column(name = "valor_ingresso_masc", nullable = false)
+    private BigDecimal valorIngressoMasc;
+    @Column(name = "valor_ingresso_fem", nullable = false)
+    private BigDecimal valorIngressoFemin;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "modo_operacao", nullable = false)
+    private ModoOperacao modoOperacao;
+    @Column(name = "data")
+    private LocalDate data;
+    @Column(name = "hora")
     private LocalTime hora;
 
-    public double getValorIngMasc() {
-        return valorIngMasc;
+    public Integer getId() {
+        return id;
     }
 
-    public void setValorIngMasc(double valorIngMasc) {
-        this.valorIngMasc = valorIngMasc;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public double getValorIngFem() {
-        return valorIngFem;
+    public BigDecimal getValorIngressoMasc() {
+        return valorIngressoMasc;
     }
 
-    public void setValorIngFem(double valorIngFem) {
-        this.valorIngFem = valorIngFem;
+    public void setValorIngressoMasc(BigDecimal valorIngressoMasc) {
+        this.valorIngressoMasc = valorIngressoMasc;
     }
 
-    public int getOperation() {
-        return operation;
+    public BigDecimal getValorIngressoFemin() {
+        return valorIngressoFemin;
     }
 
-    public void setOperation(int operation) {
-        this.operation = operation;
+    public void setValorIngressoFemin(BigDecimal valorIngressoFemin) {
+        this.valorIngressoFemin = valorIngressoFemin;
     }
 
-    public LocalDate getDia() {
-        return dia;
+    public ModoOperacao getModoOperacao() {
+        return modoOperacao;
     }
 
-    public void setDia(LocalDate dia) {
-        this.dia = dia;
+    public void setModoOperacao(ModoOperacao modoOperacao) {
+        this.modoOperacao = modoOperacao;
+    }
+
+    public LocalDate getData() {
+        return data;
+    }
+
+    public void setData(LocalDate data) {
+        this.data = data;
     }
 
     public LocalTime getHora() {
