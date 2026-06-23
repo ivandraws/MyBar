@@ -33,6 +33,8 @@ public Configuracao atualizarValoresIngresso(BigDecimal masc, BigDecimal fem) {
     Configuracao config = getConfig();
     config.setValorIngressoMasc(masc);
     config.setValorIngressoFemin(fem);
+    config.setData(LocalDate.now());
+    config.setHora(LocalTime.now());
     return repository.save(config);
 }
 
