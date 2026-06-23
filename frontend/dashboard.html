@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="./assets/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="./static/css/style.css">
+</head>
+<body>
+    <div class="app-wrapper d-flex vh-100">
+<aside class="sidebar bg-white border-end d-flex flex-column" style="width: 250px; flex-shrink: 0;">
+    
+    <div class="p-4 d-flex align-items-center gap-3 border-bottom">
+        <div class="bg-brand text-white rounded d-flex justify-content-center align-items-center" style="width: 40px; height: 40px; font-weight: bold;">MB</div>
+        <div>
+            <h5 class="m-0 fw-bold text-dark">MyBar</h5>
+            <small class="text-taupe">Gerenciador</small>
+        </div>
+    </div>
+
+    <nav class="flex-grow-1 p-3 d-flex flex-column gap-1">
+        <a href="#" class="nav-link active py-2 px-3 rounded text-decoration-none">Dashboard</a>
+        <a href="#" class="nav-link py-2 px-3 rounded text-decoration-none">Contas</a>
+        <a href="#" class="nav-link py-2 px-3 rounded text-decoration-none">Cardápio</a>
+        <a href="#" class="nav-link py-2 px-3 rounded text-decoration-none">Cozinha</a>
+        <a href="#" class="nav-link py-2 px-3 rounded text-decoration-none">Relatórios</a>
+    </nav>
+
+    <div class="p-3 border-top d-flex align-items-center gap-3">
+    <div id="user-avatar" class="bg-light rounded-circle d-flex justify-content-center align-items-center" style="width: 40px; height: 40px;">A</div>
+    <div id="user-info">
+        <a href="login.html" id="user-name" class="d-block fw-bold text-dark text-decoration-none">Admin</a>
+        <small id="user-role" class="text-taupe">Administrador</small>
+    </div>
+</div>
+</aside>
+
+    <main class="d-flex flex-column flex-grow-1 overflow-hidden">
+        <header class="top-bar p-3 border-bottom">
+        </header>
+
+        <div class="d-flex flex-grow-1 p-3 gap-3 overflow-auto">
+
+        <div class="d-flex flex-column flex-grow-1 gap-3">
+            <div class="cards-area">
+                    <div class="row g-3"> 
+                        <div class="col-4">
+                <div class="card p-3 border-0 shadow-sm">Contas Abertas</div>
+            </div>
+            <div class="col-4">
+                <div class="card p-3 border-0 shadow-sm">Faturamento Hoje</div>
+            </div>
+            <div class="col-4">
+                <div class="card p-3 border-0 shadow-sm">Fila Cozinha</div>
+            </div>
+        </div>
+            </div>
+            <div class="pedidos-table">
+            <!-- tabela aqui -->
+            </div>
+        </div>
+
+        <aside class="kitchen-feed" style="width: 280px; flex-shrink: 0;">
+            <!-- feed cozinha aqui -->
+        </aside>
+
+        </div>
+    </main>
+    </div>
+</body>
+</html>

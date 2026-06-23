@@ -4,17 +4,47 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="16c14c7c-896e-4fb2-9050-1d3014d9ce26" name="Changes" comment="reoganização" />
+    <list default="true" id="16c14c7c-896e-4fb2-9050-1d3014d9ce26" name="Changes" comment="reoganização">
+      <change beforePath="$PROJECT_DIR$/frontend/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/static/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ufpi/ivangusthavo/mybar/controller/ClienteController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ufpi/ivangusthavo/mybar/controller/UsuarioController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ufpi/ivangusthavo/mybar/model/Cliente.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ufpi/ivangusthavo/mybar/model/Configuracao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ufpi/ivangusthavo/mybar/model/Sexo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ufpi/ivangusthavo/mybar/model/TipoUsuario.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ufpi/ivangusthavo/mybar/model/Usuario.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ufpi/ivangusthavo/mybar/repository/InterfaceCliente.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ufpi/ivangusthavo/mybar/repository/InterfaceUsuario.java" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="EmbeddingIndexingInfo">
+    <option name="cachedIndexableFilesCount" value="30" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "GusthavoEduardoLima"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/ivandraws/MyBar.git",
+    "accountId": "044f961d-f41e-4377-9779-51d8ee82360e"
+  }
+}]]></component>
   <component name="MacroExpansionManager">
     <option name="directoryName" value="pLN3dGTP" />
+  </component>
+  <component name="McpProjectServerCommands">
+    <commands />
+    <urls />
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
@@ -75,12 +105,41 @@
       <entry key="W1" value="7.998450905708318" />
     </decayedShown>
   </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 6,
+  "fromUser": false
+}]]></component>
+  <component name="ProjectId" id="3FURxCpx2n6aNzeiFWck91THzDu" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "git-widget-placeholder": "gusthavo",
-    "node.js.selected.package.tslint": "(autodetect)"
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "main",
+    "junie.onboarding.icon.badge.shown": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/gusth/Documents/ufpi_gusthavo/POO/mybar/MyBar",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\gusth\Documents\ufpi_gusthavo\POO\mybar\MyBar\backend" />
+    </key>
+  </component>
   <component name="TaskManager">
     <task id="LOCAL-00001" summary="reoganização">
       <option name="closed" value="true" />
@@ -90,8 +149,57 @@
       <option name="project" value="LOCAL" />
       <updated>1781562860480</updated>
     </task>
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="16c14c7c-896e-4fb2-9050-1d3014d9ce26" name="Changes" comment="reoganização" />
+      <created>1782127906238</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1782127906238</updated>
+      <workItem from="1782127907470" duration="1420000" />
+    </task>
     <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="main" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="main" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="reoganização" />
