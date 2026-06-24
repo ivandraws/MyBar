@@ -1,14 +1,11 @@
 package ufpi.ivangusthavo.mybar.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ufpi.ivangusthavo.mybar.repository.InterfaceUsuario;
 import ufpi.ivangusthavo.mybar.model.Usuario;
 import ufpi.ivangusthavo.mybar.service.UsuarioService;
 
 import java.util.List;
-import java.util.Optional;
 
 
 @RestController
@@ -16,12 +13,9 @@ import java.util.Optional;
 @CrossOrigin("*")
 public class UsuarioController {
 
-    @Autowired
-    private InterfaceUsuario dao;
-
     private UsuarioService usuarioService;
 
-    public UsuarioController() {
+    public UsuarioController(UsuarioService usuarioService) {
         this.usuarioService = usuarioService;
     }
 
