@@ -6,19 +6,19 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Entity
-@Table
+@Table(name = "conta")
 public class Conta {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    public int numero;
+    private int numero;
 
-    public boolean status;
+    private boolean status;
 
-    public LocalDate dataAbertura;
+    private LocalDate dataAbertura;
 
-    public LocalTime horaAbertura;
+    private LocalTime horaAbertura;
 
     @ManyToOne
     @JoinColumn(name = "cliente_id")
