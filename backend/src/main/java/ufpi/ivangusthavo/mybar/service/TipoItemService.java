@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import ufpi.ivangusthavo.mybar.model.TipoItem;
 import ufpi.ivangusthavo.mybar.repository.ITipoItem;
+import ufpi.ivangusthavo.mybar.repository.ItemCardapioRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,9 +14,11 @@ import java.util.stream.Collectors;
 @Service
 public class TipoItemService {
     private final ITipoItem tipoItemRepository;
+    private final ItemCardapioRepository itemCardapioRepository;
 
-    public TipoItemService(ITipoItem tipoItemRepository) {
+    public TipoItemService(ITipoItem tipoItemRepository, ItemCardapioRepository itemCardapioRepository) {
         this.tipoItemRepository = tipoItemRepository;
+        this.itemCardapioRepository = itemCardapioRepository;
     }
 
     // Atende ao comando "Pesquisar" da tela, buscando por descrição
@@ -46,7 +49,6 @@ public class TipoItemService {
     public void excluir(Integer codigo) {
         TipoItem tipoItem = buscarPorCodigo(codigo);
 
-        // TODO: Quando a classe ItemCardapioRepository for criada, injetaremos aqui
         // para verificar se existem itens associados a este tipo.
         boolean possuiItensAssociados = verificarSePossuiItensNoCardapio(codigo);
 
@@ -61,9 +63,8 @@ public class TipoItemService {
     }
 
     private boolean verificarSePossuiItensNoCardapio(Integer codigo) {
-        // Implementação temporária falsa.
-        // Retornando falso para permitir testes de exclusão física agora.
-        return false;
+        // Devolve true se o banco encontrar qualquer item atrelado a este tipo
+        return itemCardapioRepository.existsByTipoItemCodigo(codigo);
     }
 }
 
