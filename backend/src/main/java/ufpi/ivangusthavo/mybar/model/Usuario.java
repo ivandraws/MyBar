@@ -11,6 +11,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "usuario")
+
 public class Usuario implements UserDetails {
     @Id
     @Column(name = "codigo", nullable = false, unique = true)
@@ -28,6 +29,19 @@ public class Usuario implements UserDetails {
     @Enumerated(EnumType.STRING)
     @Column(name = "tipo", nullable = false)
     private TipoUsuario tipo;
+
+    public Usuario(int codigo, String nome, String email, String senhaCriptografada, TipoUsuario role) {
+        this.codigo = codigo;
+        this.nome = nome;
+        this.email = email;
+        this.senha = senhaCriptografada;
+        this.tipo = role;
+    }
+
+    public Usuario() {
+
+    }
+
 
     public int getCodigo() {
         return codigo;
@@ -83,8 +97,8 @@ public class Usuario implements UserDetails {
         }}
 
     @Override
-    public @Nullable String getPassword() {
-        return "";
+    public String getPassword() {
+        return this.senha;
     }
 
     @Override

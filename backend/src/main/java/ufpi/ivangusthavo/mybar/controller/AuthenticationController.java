@@ -4,19 +4,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ufpi.ivangusthavo.mybar.model.AutheticationDTO;
+import ufpi.ivangusthavo.mybar.model.RegisterDTO;
+import ufpi.ivangusthavo.mybar.model.Usuario;
+import ufpi.ivangusthavo.mybar.service.UsuarioService;
 
 @RestController
-@RequestMapping("auth")
+@RequestMapping("/auth")
 public class AuthenticationController {
 
     @Autowired
     private AuthenticationManager authenticationManager;
+    @Autowired
+    private UsuarioService usuarioService;
 
     @PostMapping("/login")
     public ResponseEntity login(@RequestBody @Validated AutheticationDTO data){
@@ -25,4 +31,5 @@ public class AuthenticationController {
 
         return ResponseEntity.ok().build();
     }
+
 }

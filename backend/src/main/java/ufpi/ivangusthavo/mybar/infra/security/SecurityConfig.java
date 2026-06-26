@@ -21,7 +21,11 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
+                        .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
+                        .requestMatchers(HttpMethod.GET,  "/usuarios").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/usuarios").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.PUT,  "/usuarios").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/usuarios/**").hasRole("ADMIN")
                         .anyRequest().authenticated())
                 .build();
 

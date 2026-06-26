@@ -3,6 +3,7 @@ package ufpi.ivangusthavo.mybar.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ufpi.ivangusthavo.mybar.model.RegisterDTO;
 import ufpi.ivangusthavo.mybar.repository.InterfaceUsuario;
 import ufpi.ivangusthavo.mybar.model.Usuario;
 import ufpi.ivangusthavo.mybar.service.UsuarioService;
@@ -32,14 +33,14 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public ResponseEntity<Usuario> criarUsuario(@RequestBody Usuario usu)
+    public ResponseEntity<Usuario> criarUsuario(@RequestBody RegisterDTO user)
     {
-        return ResponseEntity.status(201).body(usuarioService.criarUsuario(usu));
+        return ResponseEntity.status(201).body(usuarioService.criarUsuario(user));
     }
     @PutMapping
-    public ResponseEntity<Usuario> editarUsuario(@RequestBody Usuario usu)
+    public ResponseEntity<Usuario> editarUsuario(@RequestBody RegisterDTO user)
     {
-        return ResponseEntity.status(201).body(usuarioService.editarUsuario(usu));
+        return ResponseEntity.ok(usuarioService.editarUsuario(user));
     }
     @DeleteMapping("/{id}")
     public ResponseEntity<?> removerUsuario(@PathVariable Integer id)
