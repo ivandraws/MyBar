@@ -3,6 +3,7 @@ package ufpi.ivangusthavo.mybar.model;
 import jakarta.persistence.*;
 import org.jspecify.annotations.Nullable;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
@@ -23,8 +24,6 @@ public class Usuario implements UserDetails {
 
     @Column(name = "senha", nullable = false)
     private String senha;
-
-    private String role;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "tipo", nullable = false)
@@ -72,8 +71,16 @@ public class Usuario implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
-    }
+        if (this.tipo == TipoUsuario.ADMIN)
+        {
+            return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_GARCOM"));
+        } else if (this.tipo == TipoUsuario.GARCOM) {
+            return List.of(new SimpleGrantedAuthority("ROLE_GARCOM"));
+        } else if (this.tipo == TipoUsuario.COZINHA) {
+            return List.of(new SimpleGrantedAuthority("ROLE_COZINHA"));
+        }else{
+            return List.of(new SimpleGrantedAuthority("ROLE_ATENDENTE"));
+        }}
 
     @Override
     public @Nullable String getPassword() {
@@ -84,25 +91,16 @@ public class Usuario implements UserDetails {
     public String getUsername() {
         return email;
     }
+    @Override
+    public boolean isAccountNonExpired() { return true; }
 
     @Override
-    public boolean isAccountNonExpired() {
-        return UserDetails.super.isAccountNonExpired();
-    }
+    public boolean isAccountNonLocked() { return true; }
 
     @Override
-    public boolean isAccountNonLocked() {
-        return UserDetails.super.isAccountNonLocked();
-    }
+    public boolean isCredentialsNonExpired() { return true; }
 
     @Override
-    public boolean isCredentialsNonExpired() {
-        return UserDetails.super.isCredentialsNonExpired();
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return UserDetails.super.isEnabled();
-    }
+    public boolean isEnabled() { return true; }
 }
 

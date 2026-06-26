@@ -12,13 +12,14 @@ import java.util.Optional;
 
 
 @RestController
-@RequestMapping("/usuario")
+@RequestMapping("/usuarios")
 @CrossOrigin("*")
 public class UsuarioController {
 
     @Autowired
     private InterfaceUsuario dao;
 
+    @Autowired
     private UsuarioService usuarioService;
 
     public UsuarioController() {
