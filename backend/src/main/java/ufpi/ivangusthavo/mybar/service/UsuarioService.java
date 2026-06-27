@@ -1,6 +1,8 @@
 package ufpi.ivangusthavo.mybar.service;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import ufpi.ivangusthavo.mybar.model.RegisterDTO;
 import ufpi.ivangusthavo.mybar.model.Usuario;
 import ufpi.ivangusthavo.mybar.repository.InterfaceUsuario;
 
@@ -20,14 +22,29 @@ public class UsuarioService {
         return lista;
     }
 
-    public Usuario criarUsuario(Usuario usuario){
-        Usuario usuarioNovo = repository.save(usuario);
-        return usuarioNovo;
+    public Usuario criarUsuario(RegisterDTO data){
+        String senhaCriptografada = new BCryptPasswordEncoder().encode(data.password());
+        Usuario usuario = new Usuario(
+                data.codigo(),
+                data.nome(),
+                data.login(),
+                senhaCriptografada,
+                data.role()
+        );
+        return repository.save(usuario);
+
     }
 
-    public Usuario editarUsuario(Usuario usuario){
-        Usuario usuarioEditado = repository.save(usuario);
-        return usuarioEditado;
+    public Usuario editarUsuario(RegisterDTO data){
+        String senhaCriptografada = new BCryptPasswordEncoder().encode(data.password());
+        Usuario usuario = new Usuario(
+                data.codigo(),
+                data.nome(),
+                data.login(),
+                senhaCriptografada,
+                data.role()
+        );
+        return repository.save(usuario);
     }
 
     public Boolean excluirUsuario(Integer id){

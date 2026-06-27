@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="./assets/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="./static/css/style.css">
+</head>
+<body>
+    <div class="app-wrapper d-flex vh-100">
+
+        <aside class="sidebar bg-white border-end d-flex flex-column" style="width: 250px; flex-shrink: 0;">
+            <div class="p-4 d-flex align-items-center gap-3 border-bottom">
+                <div class="bg-brand text-white rounded d-flex justify-content-center align-items-center" style="width: 40px; height: 40px; font-weight: bold;">MB</div>
+                <div>
+                    <h5 class="m-0 fw-bold text-dark">MyBar</h5>
+                    <small class="text-taupe">Gerenciador</small>
+                </div>
+            </div>
+
+            <nav class="flex-grow-1 p-3 d-flex flex-column gap-1">
+                <a href="#" class="nav-link active py-2 px-3 rounded">Dashboard</a>
+                <a href="#" class="nav-link py-2 px-3 rounded">Contas</a>
+                <a href="#" class="nav-link py-2 px-3 rounded">Cardápio</a>
+                <a href="#" class="nav-link py-2 px-3 rounded">Tipos de Item</a>
+                <a href="#" class="nav-link py-2 px-3 rounded">Cozinha</a>
+                <a href="#" class="nav-link py-2 px-3 rounded">Entregas</a>
+                <a href="#" class="nav-link py-2 px-3 rounded">Configuração</a>
+                <a href="#" class="nav-link py-2 px-3 rounded">Usuários</a>
+                <a href="#" class="nav-link py-2 px-3 rounded">Relatório</a>
+            </nav>
+
+            <div class="p-3 border-top d-flex align-items-center gap-3">
+                <div id="user-avatar" class="bg-brand text-white rounded-circle d-flex justify-content-center align-items-center fw-bold" style="width: 36px; height: 36px; flex-shrink: 0;">A</div>
+                <a href="./login.html">
+                <div>
+                    
+                    <span id="user-name" class="d-block fw-bold text-dark" style="font-size: 0.9rem;">Admin</span>
+                    <small id="user-role" class="text-taupe">Administrador</small>
+                    
+                </div></a>
+            </div>
+        </aside>
+
+        <main class="d-flex flex-column flex-grow-1 overflow-hidden">
+
+            <header class="top-bar p-3 border-bottom d-flex align-items-center justify-content-between bg-white">
+                <div>
+                    <h3 class="fw-bold text-main mb-0">Dashboard</h3>
+                    <small class="text-taupe">Visão geral · 10/05/2026 · Atendimento liberado</small>
+                </div>
+            </header>
+
+            <div class="d-flex flex-grow-1 overflow-hidden p-3 gap-3">
+
+                <!-- Coluna esquerda: cards + tabela -->
+                <div class="d-flex flex-column flex-grow-1 gap-3 overflow-auto">
+
+                    <div class="row g-3">
+                        <div class="col-4">
+                            <div class="card p-3 border-0 shadow-sm card-brand">
+                                <small class="text-taupe">Contas Abertas</small>
+                                <h3 class="fw-bold text-main my-1" id="kpi-contas">--</h3>
+                                <small class="text-brand" id="kpi-contas-delta"></small>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="card p-3 border-0 shadow-sm card-teal">
+                                <small class="text-taupe">Faturamento Hoje</small>
+                                <h3 class="fw-bold text-main my-1" id="kpi-faturamento">--</h3>
+                                <small id="kpi-faturamento-delta"></small>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="card p-3 border-0 shadow-sm card-sage">
+                                <small class="text-taupe">Fila Cozinha</small>
+                                <h3 class="fw-bold text-main my-1" id="kpi-ticket">--</h3>
+                                <small id="kpi-ticket-delta"></small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+                        <div class="card-body p-0">
+                            <table class="table align-middle mb-0">
+                                <thead>
+                                    <tr class="text-taupe small">
+                                        <th class="ps-4">Nº</th>
+                                        <th>Cliente</th>
+                                        <th>Garçom</th>
+                                        <th>Itens</th>
+                                        <th>Total</th>
+                                        <th>Status</th>
+                                        <th>Ações</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="pedidos-tbody">
+                                    <!-- JS injeta aqui -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Coluna direita: cozinha ao vivo -->
+                <aside class="kitchen-feed bg-white border rounded-4 d-flex flex-column p-3 gap-2 overflow-auto" style="width: 280px; flex-shrink: 0;">
+                    <h6 class="fw-bold text-main mb-1">Cozinha — Ao Vivo</h6>
+                    <div id="kitchen-list" class="d-flex flex-column gap-2">
+                        <!-- JS injeta aqui -->
+                    </div>
+                </aside>
+
+            </div>
+
+        </main>
+    </div>
+    <script src="./assets/bootstrap/bootstrap.bundle.js"></script>
+    <script src="./static/js/dashboard.js"></script>
+    <script src="static/js/script.js"></script>
+
+</body>
+</html>

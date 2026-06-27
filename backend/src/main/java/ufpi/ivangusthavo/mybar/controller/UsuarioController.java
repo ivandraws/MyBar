@@ -9,15 +9,14 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/usuario")
+@RequestMapping("/usuarios")
 @CrossOrigin("*")
 public class UsuarioController {
 
+
+    @Autowired
     private UsuarioService usuarioService;
 
-    public UsuarioController(UsuarioService usuarioService) {
-        this.usuarioService = usuarioService;
-    }
 
     @GetMapping
     public ResponseEntity<List<Usuario>> listarUsuarios() {
@@ -25,14 +24,14 @@ public class UsuarioController {
     }
 
     @PostMapping
-    public ResponseEntity<Usuario> criarUsuario(@RequestBody Usuario usu)
+    public ResponseEntity<Usuario> criarUsuario(@RequestBody RegisterDTO user)
     {
-        return ResponseEntity.status(201).body(usuarioService.criarUsuario(usu));
+        return ResponseEntity.status(201).body(usuarioService.criarUsuario(user));
     }
     @PutMapping
-    public ResponseEntity<Usuario> editarUsuario(@RequestBody Usuario usu)
+    public ResponseEntity<Usuario> editarUsuario(@RequestBody RegisterDTO user)
     {
-        return ResponseEntity.status(201).body(usuarioService.editarUsuario(usu));
+        return ResponseEntity.ok(usuarioService.editarUsuario(user));
     }
     @DeleteMapping("/{id}")
     public ResponseEntity<?> removerUsuario(@PathVariable Integer id)

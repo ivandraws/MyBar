@@ -1,77 +1,67 @@
 :root {
-    /* Cores Principais */
-    --brand-terracotta: #B56152; /* Accent primário */
-    --brand-teal: #749A96;       /* Accent secundário */
-    --brand-sage: #DDE3C0;       /* Superfícies leves */
-    --brand-taupe: #948466;      /* Texto secundário/borders */
-    
-    /* Neutras */
-    --text-dark: #343434;        /* Texto primário */
-    --bg-white: #FFFFFF;         /* Fundo principal */
-    --bg-offwhite: #F7F6F3;      /* Superfícies neutras */
-}
-.bg-brand {
-    background-color: var(--brand-terracotta);
+    --brand-terracotta: #B56152;
+    --brand-teal: #749A96;
+    --brand-sage: #DDE3C0;
+    --brand-taupe: #948466;
+    --text-dark: #343434;
+    --bg-white: #FFFFFF;
+    --bg-offwhite: #F7F6F3;
 }
 
+.bg-brand        { background-color: var(--brand-terracotta); }
+.text-main       { color: var(--text-dark) !important; }
+.text-taupe      { color: var(--brand-taupe) !important; }
+.text-white-50   { color: rgba(255, 255, 255, 0.6) !important; }
 
-.text-main {
-    color: var(--text-dark) !important;
-}
+.link-teal       { color: var(--brand-teal); font-weight: 500; transition: color 0.3s ease; }
+.link-teal:hover { color: #5a7a77; }
 
-.text-taupe {
-    color: var(--brand-taupe) !important;
-}
-.link-teal {
-    color: var(--brand-teal);
-    font-weight: 500;
-    transition: color 0.3s ease;
-}
+.btn-brand       { background-color: var(--brand-terracotta); border-color: var(--brand-terracotta); color: #FFFFFF; transition: all 0.3s ease; }
+.btn-brand:hover { background-color: #964f42; border-color: #964f42; color: #FFFFFF; }
 
-.link-teal:hover {
-    color: #5a7a77; 
-}
-
-
-.btn-brand {
-    background-color: var(--brand-terracotta);
-    border-color: var(--brand-terracotta);
-    color: #FFFFFF;
-    transition: all 0.3s ease;
-}
-
-.btn-brand:hover {
-    background-color: #964f42; 
-    border-color: #964f42;
-    color: #FFFFFF;
-}
-
-
-
-.logo-box {
-   
-    width: 100px; 
-    height: 100px; 
-    
-    
-    background-color: #FFFFFF; 
-    border-radius: 25px; 
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    
-    color: #2c3e50; 
-    font-size: 2.5rem; /* Aumenta o tamanho da fonte "MB" para preencher a caixa */
-}
-
-
-.text-white-50 {
-    color: rgba(255, 255, 255, 0.6) !important;
-}
-
-/* Customizando o foco (clique) no campo de texto para usar o Terracota */
 .form-control:focus {
     border-color: var(--brand-terracotta);
     box-shadow: 0 0 0 0.25rem rgba(181, 97, 82, 0.25);
+}
+
+.app-wrapper { background-color: var(--bg-offwhite); }
+.top-bar     { height: 80px; }
+.top-bar a:hover { background-color: #edeae4 !important; transition: all 0.2s ease; }
+
+.sidebar { background-color: var(--bg-white); }
+
+.nav-link         { color: var(--brand-taupe); font-weight: 500; transition: all 0.2s ease; }
+.nav-link:hover   { background-color: var(--bg-offwhite); color: var(--brand-terracotta); }
+.nav-link.active  { background-color: var(--bg-offwhite); color: var(--brand-terracotta); border-left: 3px solid var(--brand-terracotta); }
+
+.card {
+    border-radius: 1rem !important;
+    background-color: var(--bg-white) !important;
+}
+
+.card-brand       { border-left: 4px solid var(--brand-terracotta) !important; }
+.card-teal        { border-left: 4px solid var(--brand-teal) !important; }
+.card-sage        { border-left: 4px solid var(--brand-sage) !important; }
+
+
+.card-orange      { border-left: 4px solid #C97B3A !important; }
+.card-teal-status { border-left: 4px solid var(--brand-teal) !important; }
+.card-green       { border-left: 4px solid #5C8A6B !important; }
+
+
+.badge { padding: 0.5em 0.8em; font-weight: 500; }
+
+.badge-orange { background-color: rgba(201, 123, 58, 0.12); color: #C97B3A; }
+.badge-teal   { background-color: rgba(116, 154, 150, 0.12); color: var(--brand-teal); }
+.badge-green  { background-color: rgba(92, 138, 107, 0.12); color: #5C8A6B; }
+.badge-red    { background-color: rgba(176, 32, 32, 0.12); color: #B02020; }
+
+
+.table thead th {
+    border-bottom: 2px solid var(--bg-offwhite);
+    padding-bottom: 1rem;
+}
+
+.table tbody tr { 
+    border-bottom: 1px solid var(--bg-offwhite); 
 }
