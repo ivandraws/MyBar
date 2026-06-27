@@ -8,9 +8,13 @@ public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(name = "cpf")
     private String cpf;
+    @Column(name = "nome")
     private String nome;
+    @Column(name = "telefone")
     private String telefone;
+    @Column(name = "sexo")
     private Sexo sexo;
     public Cliente(){
 
