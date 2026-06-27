@@ -23,7 +23,7 @@ public class TipoItem implements Persistable<Integer> {
     private Boolean cozinha;
 
     @Column(name="ativo", nullable = false)
-    private Boolean ativo;
+    private Boolean ativo = true;
 
     @Transient
     private boolean isNovo = true;
