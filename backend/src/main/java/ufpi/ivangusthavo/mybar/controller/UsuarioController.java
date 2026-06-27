@@ -17,15 +17,10 @@ import java.util.Optional;
 @CrossOrigin("*")
 public class UsuarioController {
 
-    @Autowired
-    private InterfaceUsuario dao;
 
     @Autowired
     private UsuarioService usuarioService;
 
-    public UsuarioController() {
-        this.usuarioService = usuarioService;
-    }
 
     @GetMapping
     public ResponseEntity<List<Usuario>> listarUsuarios() {
