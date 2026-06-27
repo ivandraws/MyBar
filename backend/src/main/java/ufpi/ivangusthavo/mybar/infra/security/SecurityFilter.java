@@ -21,14 +21,21 @@ public class SecurityFilter extends OncePerRequestFilter {
 
     @Autowired
     InterfaceUsuario interfaceUser;
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+    @Override
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+            throws ServletException, IOException {
         var token = this.recoverToken(request);
-        if (token!=null){
+        if (token != null) {
             var login = tokenService.validateToken(token);
-            UserDetails user = interfaceUser.findByEmail(login);
+            if (!login.isEmpty()) {
+                UserDetails user = interfaceUser.findByEmail(login);
 
-            var authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
-            SecurityContextHolder.getContext().setAuthentication(authentication);
+                // CRÍTICO: Se o 'user' for nulo, não autentique
+                if (user != null) {
+                    var authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
+                    SecurityContextHolder.getContext().setAuthentication(authentication);
+                }
+            }
         }
         filterChain.doFilter(request, response);
     }
