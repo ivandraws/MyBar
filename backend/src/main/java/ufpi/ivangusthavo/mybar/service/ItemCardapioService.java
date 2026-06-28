@@ -2,6 +2,7 @@ package ufpi.ivangusthavo.mybar.service;
 
 import ufpi.ivangusthavo.mybar.model.ItemCardapio;
 import ufpi.ivangusthavo.mybar.repository.ItemCardapioRepository;
+import ufpi.ivangusthavo.mybar.repository.ItemContaRepository; // Novo import
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,9 +15,12 @@ import java.util.stream.Collectors;
 public class ItemCardapioService {
 
     private final ItemCardapioRepository itemCardapioRepository;
+    private final ItemContaRepository itemContaRepository; // Nova dependência
 
-    public ItemCardapioService(ItemCardapioRepository itemCardapioRepository) {
+    // Construtor atualizado com a injeção do ItemContaRepository
+    public ItemCardapioService(ItemCardapioRepository itemCardapioRepository, ItemContaRepository itemContaRepository) {
         this.itemCardapioRepository = itemCardapioRepository;
+        this.itemContaRepository = itemContaRepository;
     }
 
     public List<ItemCardapio> pesquisar(String descricao) {
@@ -44,7 +48,7 @@ public class ItemCardapioService {
     public void excluir(Integer codigo) {
         ItemCardapio item = buscarPorCodigo(codigo);
 
-        // TODO: Injetar ItemContaRepository no futuro para checar vínculos
+        // Validação real no banco de dados habilitada
         boolean possuiContasAssociadas = verificarSePossuiContasAssociadas(codigo);
 
         if (possuiContasAssociadas) {
@@ -56,7 +60,7 @@ public class ItemCardapioService {
     }
 
     private boolean verificarSePossuiContasAssociadas(Integer codigo) {
-        // Retorno temporário até criarmos a estrutura de Itens da Conta
-        return false;
+        // Agora o Spring Data vai ao banco verificar se esse item já foi pedido alguma vez
+        return itemContaRepository.existsByItemCardapioCodigo(codigo);
     }
 }

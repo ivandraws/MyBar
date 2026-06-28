@@ -1,30 +1,48 @@
 package ufpi.ivangusthavo.mybar.model;
 
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Objects;
 
 @Entity
 @Table(name = "conta")
 public class Conta {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private int numero;
+    @Column(name = "numero", nullable = false)
+    private Integer numero;
 
-    private boolean status;
+    // true = Aberta, false = Fechada
+    @Column(name = "status", nullable = false)
+    private Boolean status = true;
 
+    @Column(name = "data_abertura", nullable = false, updatable = false)
     private LocalDate dataAbertura;
 
+    @Column(name = "hora_abertura", nullable = false, updatable = false)
     private LocalTime horaAbertura;
 
-    @ManyToOne
-    @JoinColumn(name = "cliente_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "cliente_id", nullable = false)
     private Cliente cliente;
-    public Conta(){
 
+    // Relacionamento adicionado conforme o diagrama
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "garcon_abertura_id", nullable = false)
+    private Usuario garconAbertura;
+
+    public Conta() {
+    }
+
+    // Callback para preencher data e hora automaticamente na criação
+    @PrePersist
+    protected void onPrePersist() {
+        this.dataAbertura = LocalDate.now();
+        this.horaAbertura = LocalTime.now();
     }
 
     public Long getId() {
@@ -35,19 +53,19 @@ public class Conta {
         this.id = id;
     }
 
-    public int getNumero() {
+    public Integer getNumero() {
         return numero;
     }
 
-    public void setNumero(int numero) {
+    public void setNumero(Integer numero) {
         this.numero = numero;
     }
 
-    public boolean isStatus() {
+    public Boolean getStatus() {
         return status;
     }
 
-    public void setStatus(boolean status) {
+    public void setStatus(Boolean status) {
         this.status = status;
     }
 
@@ -73,5 +91,27 @@ public class Conta {
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
+    }
+
+    public Usuario getGarconAbertura() {
+        return garconAbertura;
+    }
+
+    public void setGarconAbertura(Usuario garconAbertura) {
+        this.garconAbertura = garconAbertura;
+    }
+
+    // Equals e HashCode baseados no ID
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Conta conta = (Conta) o;
+        return Objects.equals(id, conta.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }
