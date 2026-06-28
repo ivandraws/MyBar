@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private long id;
     @Column(name = "cpf")
     private String cpf;
     @Column(name = "nome")
@@ -20,7 +20,7 @@ public class Cliente {
 
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
