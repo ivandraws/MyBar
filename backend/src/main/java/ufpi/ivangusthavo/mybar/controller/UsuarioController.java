@@ -11,7 +11,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/usuarios")
+@RequestMapping("/usuario")
 @CrossOrigin("*")
 public class UsuarioController {
 
@@ -19,6 +19,9 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
 
+    public UsuarioController(UsuarioService usuarioService){
+        this.usuarioService = usuarioService;
+    }
 
     @GetMapping
     public ResponseEntity<List<Usuario>> listarUsuarios() {
