@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório de Contas por Período</title>
+    <link rel="stylesheet" href="./assets/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="./static/css/style.css">
+    <link rel="stylesheet" href="./static/css/relatorio.css">
+</head>
+<body>
+    <div class="app-wrapper d-flex vh-100">
+
+        <!-- ===================== SIDEBAR ===================== -->
+        <aside class="sidebar bg-white border-end d-flex flex-column" style="width: 250px; flex-shrink: 0;">
+            <div class="p-4 d-flex align-items-center gap-3 border-bottom">
+                <div class="bg-brand text-white rounded d-flex justify-content-center align-items-center" style="width: 40px; height: 40px; font-weight: bold;">MB</div>
+                <div>
+                    <h5 class="m-0 fw-bold text-dark">MyBar</h5>
+                    <small class="text-taupe">Gerenciador</small>
+                </div>
+            </div>
+
+            <nav class="flex-grow-1 p-3 d-flex flex-column gap-1">
+                <a href="./dashboard.html" class="nav-link py-2 px-3 rounded">Dashboard</a>
+                <a href="./contas.html" class="nav-link py-2 px-3 rounded">Contas</a>
+                <a href="./cardapio.html" class="nav-link py-2 px-3 rounded">Cardápio</a>
+                <a href="./cozinha.html" class="nav-link py-2 px-3 rounded">Cozinha</a>
+                <a href="./entregas.html" class="nav-link py-2 px-3 rounded">Entregas</a>
+                <a href="./configuracao.html" class="nav-link py-2 px-3 rounded">Configuração</a>
+                <a href="./usuarios.html" class="nav-link py-2 px-3 rounded">Usuários</a>
+                <a href="./relatorio.html" class="nav-link active py-2 px-3 rounded">Relatório</a>
+            </nav>
+
+            <div class="p-3 border-top d-flex align-items-center gap-3">
+                <div id="user-avatar" class="bg-brand text-white rounded-circle d-flex justify-content-center align-items-center fw-bold" style="width: 36px; height: 36px; flex-shrink: 0;">A</div>
+                <a href="#" onclick="logout(); return false;" title="Clique para sair">
+                <div>
+                    <span id="user-name" class="d-block fw-bold text-dark" style="font-size: 0.9rem;">Admin</span>
+                    <small id="user-role" class="text-taupe">Administrador</small>
+                </div></a>
+            </div>
+        </aside>
+
+        <!-- ===================== CONTEÚDO PRINCIPAL ===================== -->
+        <main class="d-flex flex-column flex-grow-1 overflow-hidden">
+
+            <header class="top-bar p-3 border-bottom d-flex align-items-center justify-content-between bg-white">
+                <div>
+                    <h3 class="fw-bold text-main mb-0">Relatório de Contas por Período</h3>
+                    <small class="text-taupe">Faturamento, detalhamento e formas de pagamento</small>
+                </div>
+            </header>
+
+            <div class="d-flex flex-column flex-grow-1 overflow-auto p-3 gap-3">
+
+                <!-- Filtro de Período -->
+                <div class="card border-0 shadow-sm rounded-4 p-3">
+                    <div class="row g-3 align-items-end">
+                        <div class="col-md-3">
+                            <label class="form-label text-muted small fw-medium mb-1">De</label>
+                            <input type="date" id="periodo-inicio" class="form-control">
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label text-muted small fw-medium mb-1">Até</label>
+                            <input type="date" id="periodo-fim" class="form-control">
+                        </div>
+                        <div class="col-md-2">
+                            <button type="button" id="btn-gerar" class="btn btn-brand fw-semibold w-100">Gerar Relatório</button>
+                        </div>
+                    </div>
+                    <div id="erro-periodo" class="text-danger small mt-2 d-none"></div>
+                </div>
+
+                <!-- Indicadores principais -->
+                <div class="row g-3">
+                    <div class="col-4">
+                        <div class="card p-3 border-0 shadow-sm card-brand">
+                            <small class="text-taupe">Total de Contas</small>
+                            <h3 class="fw-bold text-main my-1" id="kpi-total-contas">--</h3>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="card p-3 border-0 shadow-sm card-teal">
+                            <small class="text-taupe">Ticket Médio</small>
+                            <h3 class="fw-bold text-main my-1" id="kpi-ticket-medio">--</h3>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="card p-3 border-0 shadow-sm card-sage">
+                            <small class="text-taupe">Faturamento Total</small>
+                            <h3 class="fw-bold text-main my-1" id="kpi-faturamento">--</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row g-3">
+
+                    <!-- Detalhamento por tipo -->
+                    <div class="col-6">
+                        <div class="card border-0 shadow-sm rounded-4 p-3 h-100">
+                            <h6 class="fw-bold text-main mb-3">Detalhamento</h6>
+                            <div class="linha-detalhe">
+                                <span>Entrada (ingressos)</span>
+                                <strong id="det-entrada">R$ 0,00</strong>
+                            </div>
+                            <div class="linha-detalhe">
+                                <span>Bebidas</span>
+                                <strong id="det-bebidas">R$ 0,00</strong>
+                            </div>
+                            <div class="linha-detalhe">
+                                <span>Comidas</span>
+                                <strong id="det-comidas">R$ 0,00</strong>
+                            </div>
+                            <div class="linha-detalhe">
+                                <span>Sobremesas</span>
+                                <strong id="det-sobremesas">R$ 0,00</strong>
+                            </div>
+                            <div class="linha-detalhe">
+                                <span>Gorjetas</span>
+                                <strong id="det-gorjetas">R$ 0,00</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Forma de pagamento -->
+                    <div class="col-6">
+                        <div class="card border-0 shadow-sm rounded-4 p-3 h-100">
+                            <h6 class="fw-bold text-main mb-3">Forma de Pagamento</h6>
+                            <div class="linha-detalhe">
+                                <span>Dinheiro</span>
+                                <strong id="pag-dinheiro">R$ 0,00</strong>
+                            </div>
+                            <div class="linha-detalhe">
+                                <span>Débito</span>
+                                <strong id="pag-debito">R$ 0,00</strong>
+                            </div>
+                            <div class="linha-detalhe">
+                                <span>Crédito</span>
+                                <strong id="pag-credito">R$ 0,00</strong>
+                            </div>
+                            <div class="linha-detalhe">
+                                <span>Pix</span>
+                                <strong id="pag-pix">R$ 0,00</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="./assets/bootstrap/bootstrap.bundle.js"></script>
+    <script src="./static/js/script.js"></script>
+    <script src="./static/js/relatorio.js"></script>
+</body>
+</html>

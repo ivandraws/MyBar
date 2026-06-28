@@ -1,0 +1,47 @@
+/* ===================== Tela de Entregas ===================== */
+
+.badge-status {
+    padding: 0.4em 0.9em;
+    border-radius: 1rem;
+    font-weight: 500;
+    font-size: 0.8rem;
+}
+
+.badge-solicitado    { background-color: rgba(116, 154, 150, 0.15); color: var(--brand-teal); }
+.badge-em-preparacao { background-color: rgba(201, 123, 58, 0.15);  color: #C97B3A; }
+.badge-entregue       { background-color: rgba(92, 138, 107, 0.15); color: #5C8A6B; }
+
+.btn-receber-pedido {
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    padding: 0.35rem 0.85rem;
+    border: none;
+    background-color: rgba(116, 154, 150, 0.15);
+    color: var(--brand-teal);
+}
+
+.btn-receber-pedido:hover {
+    background-color: var(--brand-teal);
+    color: #FFFFFF;
+}
+
+.btn-entregar-pedido {
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    padding: 0.35rem 0.85rem;
+    border: none;
+    background-color: rgba(201, 123, 58, 0.15);
+    color: #C97B3A;
+}
+
+.btn-entregar-pedido:hover {
+    background-color: #C97B3A;
+    color: #FFFFFF;
+}
+
+/* Destaca visualmente o formulário quando um pedido está selecionado para entrega */
+#card-registrar-entrega.selecionado {
+    border: 1px solid var(--brand-terracotta) !important;
+}

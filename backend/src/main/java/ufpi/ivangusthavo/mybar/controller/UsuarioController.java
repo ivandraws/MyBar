@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ufpi.ivangusthavo.mybar.model.RegisterDTO;
 import ufpi.ivangusthavo.mybar.model.Usuario;
+import ufpi.ivangusthavo.mybar.model.UsuarioResponseDTO;
 import ufpi.ivangusthavo.mybar.service.UsuarioService;
 
 import java.util.List;
@@ -21,10 +22,13 @@ public class UsuarioController {
 
 
     @GetMapping
-    public ResponseEntity<List<Usuario>> listarUsuarios() {
-        return ResponseEntity.status(200).body(usuarioService.listarUsuario());
+    public ResponseEntity<List<UsuarioResponseDTO>> listarUsuarios() {
+        List<UsuarioResponseDTO> lista = usuarioService.listarUsuario()
+                .stream()
+                .map(u -> new UsuarioResponseDTO(u.getCodigo(), u.getNome(), u.getEmail(), u.getTipo()))
+                .toList();
+        return ResponseEntity.ok(lista);
     }
-
     @PostMapping
     public ResponseEntity<Usuario> criarUsuario(@RequestBody RegisterDTO user)
     {

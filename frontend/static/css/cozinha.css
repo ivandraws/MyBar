@@ -1,0 +1,99 @@
+/* ===================== Tela de Cozinha ===================== */
+
+/* Reaproveita o estilo de botão de filtro, com contador embutido */
+.btn-filtro .contador {
+    opacity: 0.8;
+    margin-left: 0.25rem;
+}
+
+/* Cada coluna do quadro ocupa o mesmo espaço, lado a lado */
+.coluna-cozinha {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0; /* evita que o conteúdo "empurre" a largura da coluna */
+}
+
+.coluna-header {
+    font-weight: 600;
+    padding: 0.9rem 1.2rem;
+    border-radius: 0.8rem;
+    margin-bottom: 0.75rem;
+}
+
+.coluna-contador {
+    opacity: 0.75;
+    font-weight: 500;
+}
+
+.coluna-solicitado  { background-color: rgba(116, 154, 150, 0.12); color: var(--brand-teal); }
+.coluna-em-preparo  { background-color: rgba(201, 123, 58, 0.12); color: #C97B3A; }
+.coluna-entregue    { background-color: rgba(92, 138, 107, 0.12); color: #5C8A6B; }
+
+.coluna-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    overflow-y: auto;
+}
+
+/* Cartão de pedido individual */
+.card-pedido {
+    background-color: var(--bg-white);
+    border: 1px solid #ece8e0;
+    border-left: 4px solid var(--brand-taupe);
+    border-radius: 0.8rem;
+    padding: 1rem;
+    transition: opacity 0.2s ease;
+}
+
+.card-pedido.coluna-solicitado-borda { border-left-color: var(--brand-teal); }
+.card-pedido.coluna-em-preparo-borda { border-left-color: #C97B3A; }
+.card-pedido.coluna-entregue-borda   { border-left-color: #5C8A6B; }
+
+.card-pedido .conta-label {
+    font-size: 0.8rem;
+    color: var(--brand-taupe);
+}
+
+.card-pedido .item-nome {
+    font-weight: 700;
+    color: var(--text-dark);
+    display: block;
+    margin: 0.15rem 0;
+}
+
+.card-pedido .horario {
+    font-size: 0.8rem;
+    color: var(--brand-taupe);
+    display: block;
+    margin-bottom: 0.6rem;
+}
+
+.btn-acao-pedido {
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 0.5rem;
+    padding: 0.4rem 0.9rem;
+    border: none;
+}
+
+.btn-receber {
+    background-color: rgba(116, 154, 150, 0.15);
+    color: var(--brand-teal);
+}
+
+.btn-receber:hover {
+    background-color: var(--brand-teal);
+    color: #FFFFFF;
+}
+
+.btn-marcar-entregue {
+    background-color: rgba(201, 123, 58, 0.15);
+    color: #C97B3A;
+}
+
+.btn-marcar-entregue:hover {
+    background-color: #C97B3A;
+    color: #FFFFFF;
+}

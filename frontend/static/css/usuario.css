@@ -1,0 +1,13 @@
+/* ===================== Tela de Usuários ===================== */
+
+.badge-tipo-usuario {
+    padding: 0.4em 0.9em;
+    border-radius: 1rem;
+    font-weight: 500;
+    font-size: 0.8rem;
+}
+
+.badge-admin     { background-color: rgba(181, 97, 82, 0.15);  color: var(--brand-terracotta); }
+.badge-cozinha   { background-color: rgba(201, 123, 58, 0.15); color: #C97B3A; }
+.badge-garcom    { background-color: rgba(116, 154, 150, 0.15); color: var(--brand-teal); }
+.badge-atendente { background-color: rgba(148, 132, 102, 0.15); color: var(--brand-taupe); }

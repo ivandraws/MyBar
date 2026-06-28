@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuração do Sistema</title>
+    <link rel="stylesheet" href="./assets/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="./static/css/style.css">
+    <link rel="stylesheet" href="./static/css/configuracao.css">
+</head>
+<body>
+    <div class="app-wrapper d-flex vh-100">
+
+        <!-- ===================== SIDEBAR ===================== -->
+        <aside class="sidebar bg-white border-end d-flex flex-column" style="width: 250px; flex-shrink: 0;">
+            <div class="p-4 d-flex align-items-center gap-3 border-bottom">
+                <div class="bg-brand text-white rounded d-flex justify-content-center align-items-center" style="width: 40px; height: 40px; font-weight: bold;">MB</div>
+                <div>
+                    <h5 class="m-0 fw-bold text-dark">MyBar</h5>
+                    <small class="text-taupe">Gerenciador</small>
+                </div>
+            </div>
+
+            <nav class="flex-grow-1 p-3 d-flex flex-column gap-1">
+                <a href="./dashboard.html" class="nav-link py-2 px-3 rounded">Dashboard</a>
+                <a href="./contas.html" class="nav-link py-2 px-3 rounded">Contas</a>
+                <a href="./cardapio.html" class="nav-link py-2 px-3 rounded">Cardápio</a>
+                <a href="./cozinha.html" class="nav-link py-2 px-3 rounded">Cozinha</a>
+                <a href="./entregas.html" class="nav-link py-2 px-3 rounded">Entregas</a>
+                <a href="./configuracao.html" class="nav-link active py-2 px-3 rounded">Configuração</a>
+                <a href="./usuarios.html" class="nav-link py-2 px-3 rounded">Usuários</a>
+                <a href="./relatorio.html" class="nav-link py-2 px-3 rounded">Relatório</a>
+            </nav>
+
+            <div class="p-3 border-top d-flex align-items-center gap-3">
+                <div id="user-avatar" class="bg-brand text-white rounded-circle d-flex justify-content-center align-items-center fw-bold" style="width: 36px; height: 36px; flex-shrink: 0;">A</div>
+                <a href="#" onclick="logout(); return false;" title="Clique para sair">
+                <div>
+                    <span id="user-name" class="d-block fw-bold text-dark" style="font-size: 0.9rem;">Admin</span>
+                    <small id="user-role" class="text-taupe">Administrador</small>
+                </div></a>
+            </div>
+        </aside>
+
+        <!-- ===================== CONTEÚDO PRINCIPAL ===================== -->
+        <main class="d-flex flex-column flex-grow-1 overflow-hidden">
+
+            <header class="top-bar p-3 border-bottom d-flex align-items-center justify-content-between bg-white">
+                <div>
+                    <h3 class="fw-bold text-main mb-0">Configuração do Sistema</h3>
+                    <small class="text-taupe">Ingresso, liberação e fechamento de atendimentos</small>
+                </div>
+            </header>
+
+            <div class="d-flex flex-column flex-grow-1 overflow-auto p-3 gap-3">
+
+                <!-- Indicador do modo de operação atual -->
+                <div class="card border-0 shadow-sm rounded-4 p-3 d-flex flex-row align-items-center gap-3">
+                    <span class="status-dot" id="status-dot"></span>
+                    <div>
+                        <small class="text-taupe d-block">Modo de operação atual</small>
+                        <span class="fw-bold text-main" id="texto-modo-operacao">--</span>
+                    </div>
+                </div>
+
+                <!-- Bloco 1: Configuração de Ingresso -->
+                <div class="card border-0 shadow-sm rounded-4 p-3">
+                    <h6 class="fw-bold text-main mb-3">Configuração de Ingresso</h6>
+                    <div class="row g-3 align-items-end">
+                        <div class="col-md-3">
+                            <label class="form-label text-muted small fw-medium mb-1">Ingresso Masculino</label>
+                            <input type="number" step="0.01" id="ingresso-masculino" class="form-control" placeholder="R$ 0,00">
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label text-muted small fw-medium mb-1">Ingresso Feminino</label>
+                            <input type="number" step="0.01" id="ingresso-feminino" class="form-control" placeholder="R$ 0,00">
+                        </div>
+                        <div class="col-md-2">
+                            <button type="button" id="btn-salvar-ingresso" class="btn btn-brand fw-semibold w-100">Salvar</button>
+                        </div>
+                    </div>
+                    <div id="msg-ingresso" class="small mt-2 d-none"></div>
+                </div>
+
+                <!-- Bloco 2: Liberação de Atendimentos -->
+                <div class="card border-0 shadow-sm rounded-4 p-3">
+                    <h6 class="fw-bold text-main mb-3">Liberação de Atendimentos</h6>
+                    <div class="row g-3 align-items-end">
+                        <div class="col-md-3">
+                            <label class="form-label text-muted small fw-medium mb-1">Data</label>
+                            <input type="date" id="liberacao-data" class="form-control">
+                        </div>
+                        <div class="col-md-2">
+                            <label class="form-label text-muted small fw-medium mb-1">Hora</label>
+                            <input type="time" id="liberacao-hora" class="form-control">
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" id="btn-liberar" class="btn btn-liberar fw-semibold w-100">Liberar Atendimentos</button>
+                        </div>
+                    </div>
+                    <div id="msg-liberacao" class="small mt-2 d-none"></div>
+                </div>
+
+                <!-- Bloco 3: Fechamento de Atendimentos -->
+                <div class="card border-0 shadow-sm rounded-4 p-3">
+                    <h6 class="fw-bold text-main mb-3">Fechamento de Atendimentos</h6>
+                    <div class="row g-3 align-items-end">
+                        <div class="col-md-3">
+                            <label class="form-label text-muted small fw-medium mb-1">Data</label>
+                            <input type="date" id="fechamento-data" class="form-control">
+                        </div>
+                        <div class="col-md-2">
+                            <label class="form-label text-muted small fw-medium mb-1">Hora</label>
+                            <input type="time" id="fechamento-hora" class="form-control">
+                        </div>
+                        <div class="col-md-3">
+                            <button type="button" id="btn-fechar" class="btn btn-fechar-atendimento fw-semibold w-100">Fechar Atendimentos</button>
+                        </div>
+                    </div>
+                    <div id="msg-fechamento" class="small mt-2 d-none"></div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="./assets/bootstrap/bootstrap.bundle.js"></script>
+    <script src="./static/js/script.js"></script>
+    <script src="./static/js/configuracao.js"></script>
+</body>
+</html>
