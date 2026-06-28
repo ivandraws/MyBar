@@ -1,7 +1,9 @@
 package ufpi.ivangusthavo.mybar.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ufpi.ivangusthavo.mybar.model.RegisterDTO;
 import ufpi.ivangusthavo.mybar.model.Usuario;
 import ufpi.ivangusthavo.mybar.service.UsuarioService;
 

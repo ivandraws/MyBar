@@ -38,7 +38,7 @@ public class ClienteController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<?> deletarCliente(@PathVariable Integer id)
+    public ResponseEntity<?> deletarCliente(@PathVariable Long id)
     {
 
         dao.deleteById(id);
