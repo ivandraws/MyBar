@@ -44,4 +44,10 @@ public class ClienteController {
         dao.deleteById(id);
         return ResponseEntity.status(204).build();
     }
+    @GetMapping("/cpf/{cpf}")
+    public ResponseEntity<Cliente> buscarPorCpf(@PathVariable String cpf) {
+        return dao.findByCpf(cpf)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
 }

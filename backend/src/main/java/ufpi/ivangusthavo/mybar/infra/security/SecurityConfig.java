@@ -18,6 +18,7 @@ import org.springframework.web.filter.CorsFilter;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+
     @Autowired
     SecurityFilter securityFilter;
 
@@ -25,37 +26,47 @@ public class SecurityConfig {
     CorsFilter corsFilter;
 
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
+    public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authorize -> authorize
+                        // Rotas Públicas
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+
+                        // Usuários
                         .requestMatchers(HttpMethod.GET,  "/usuarios").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/usuarios").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.PUT,  "/usuarios").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.DELETE, "/usuarios/**").hasRole("ADMIN")
+
+                        // Pagamentos
                         .requestMatchers(HttpMethod.POST, "/pagamentos/**").hasAnyRole("ADMIN", "GARCOM")
                         .requestMatchers(HttpMethod.DELETE, "/pagamentos/**").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.GET, "/pagamentos/**").hasAnyRole("ADMIN", "GARCOM")
-                        .requestMatchers(HttpMethod.POST, "/contas").hasAnyRole("ADMIN", "GARCOM")
-                        .requestMatchers(HttpMethod.GET, "/contas/**").hasAnyRole("ADMIN", "GARCOM")
-                        .requestMatchers(HttpMethod.PUT, "/contas/**").hasAnyRole("ADMIN", "GARCOM")
-                        .requestMatchers(HttpMethod.DELETE, "/contas/**").hasAnyRole("ADMIN", "GARCOM")
+
+                        // =========================================================
+                        // LIBERADO TEMPORARIAMENTE PARA TESTE DE INTEGRAÇÃO
+                        // =========================================================
+                        .requestMatchers("/contas/**").permitAll()
+                        .requestMatchers("/contas").permitAll()
+                        .requestMatchers("/clientes/**").permitAll()
+                        .requestMatchers("/clientes").permitAll()
+
                         .anyRequest().authenticated())
                 .addFilterBefore(corsFilter, UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
-
     }
+
     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception{
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 }

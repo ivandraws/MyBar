@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.*;
 import ufpi.ivangusthavo.mybar.model.Conta;
 import ufpi.ivangusthavo.mybar.service.ContaService;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/contas")
 public class ContaController {
@@ -43,5 +45,10 @@ public class ContaController {
     public ResponseEntity<?> excluirConta(@PathVariable Long id) {
         contaService.excluirConta(id);
         return ResponseEntity.status(204).build();
+    }
+
+    @GetMapping
+    public ResponseEntity<List<Conta>> listarContas() {
+        return ResponseEntity.ok(contaService.listarContas());
     }
 }

@@ -9,6 +9,7 @@ import ufpi.ivangusthavo.mybar.repository.IConta;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 @Service
 public class ContaService {
@@ -84,6 +85,9 @@ public class ContaService {
         return iConta.save(contaExistente);
     }
 
+    public List<Conta> listarContas() {
+        return iConta.findAll();
+    }
     @Transactional
     public void excluirConta(Long id) {
 
