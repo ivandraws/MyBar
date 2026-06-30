@@ -30,6 +30,9 @@ public class Usuario implements UserDetails {
     @Column(name = "tipo", nullable = false)
     private TipoUsuario tipo;
 
+    @Column(name = "ativo", nullable = false)
+    private Boolean ativo = true;
+
     public Usuario(int codigo, String nome, String email, String senhaCriptografada, TipoUsuario role) {
         this.codigo = codigo;
         this.nome = nome;
@@ -81,6 +84,14 @@ public class Usuario implements UserDetails {
 
     public void setTipo(TipoUsuario tipo) {
         this.tipo = tipo;
+    }
+
+    public Boolean getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(Boolean ativo) {
+        this.ativo = ativo;
     }
 
     @Override
