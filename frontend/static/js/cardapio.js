@@ -1,3 +1,5 @@
+const API_BASE = "http://localhost:8080";
+
 // 1. Dados simulados (Mock Data) — depois vamos trocar por uma chamada à API
 const itensData = [
     { codigo: 1010, descricao: "Coca-cola 290ml", tipo: "Bebida", valorUnitario: 8.00, gorjeta: 10 },
@@ -67,8 +69,22 @@ function criarLinhaTabela(item) {
     `;
 }
 
+// Aqui precisa de um form
+let codigoEmEdicao = null;
+let itensCached = [];
+
+async function abrirFormularioNovo() {
+    codigoEmEdicao = null;
+    
+
+}
+
+
+
+
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("btn-pesquisar").addEventListener("click", pesquisarItens);
+    document.getElementById("btnNewItem").addEventListener("click", abrirFormularioNovo)
 
     // Mostra todos os itens (já ordenados) na primeira carga da página
     pesquisarItens();
