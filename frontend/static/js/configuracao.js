@@ -1,10 +1,51 @@
-// Estado simulado da configuração — depois isso vai vir de um GET /configuracao real
-// modoOperacao pode ser: "GESTAO" ou "ATENDIMENTO" (mesmos nomes do enum ModoOperacao do backend)
+const API_BASE_URL = "http://localhost:8080";
+
+function getToken() {
+    return sessionStorage.getItem("token");
+}
+
+function authHeader() {
+    const token = getToken();
+    const headers = {
+        "Content-Type": "application/json"
+    };
+
+    if (token) {
+        headers.Authorization = "Bearer " + token;
+    }
+
+    return headers;
+}
+
 const configuracaoAtual = {
     valorIngressoMasc: 50.00,
     valorIngressoFemin: 10.00,
     modoOperacao: "GESTAO"
 };
+
+async function carregarConfiguracao() {
+    try {
+        const response = await fetch(`${API_BASE_URL}/api/configuracao`, {
+            method: "GET",
+            headers: authHeader()
+        });
+
+        if (!response.ok) {
+            mostrarMensagem("msg-ingresso", "Não foi possível carregar a configuração atual.", "erro");
+            return;
+        }
+
+        const configuracao = await response.json();
+        configuracaoAtual.valorIngressoMasc = Number(configuracao.valorIngressoMasc ?? configuracao.valorIngressoMasc);
+        configuracaoAtual.valorIngressoFemin = Number(configuracao.valorIngressoFemin ?? configuracao.valorIngressoFemin);
+        configuracaoAtual.modoOperacao = configuracao.modoOperacao || "GESTAO";
+
+        carregarTelaComDadosAtuais();
+    } catch (error) {
+        console.error("Erro ao carregar configuração:", error);
+        mostrarMensagem("msg-ingresso", "Erro ao conectar com o servidor.", "erro");
+    }
+}
 
 function carregarTelaComDadosAtuais() {
     // Preenche os campos de ingresso com o valor já configurado
@@ -36,11 +77,27 @@ function salvarIngresso() {
         return;
     }
 
-    // Simula o que o ConfiguracaoService.atualizarValoresIngresso faria no backend
-    configuracaoAtual.valorIngressoMasc = masculino;
-    configuracaoAtual.valorIngressoFemin = feminino;
+    fetch(`${API_BASE_URL}/api/configuracao/ingresso?masc=${encodeURIComponent(masculino)}&fem=${encodeURIComponent(feminino)}`, {
+        method: "PUT",
+        headers: authHeader()
+    })
+        .then(async response => {
+            if (!response.ok) {
+                throw new Error(await response.text());
+            }
 
-    mostrarMensagem("msg-ingresso", "Valores de ingresso salvos com sucesso.", "sucesso");
+            return response.json();
+        })
+        .then(configuracao => {
+            configuracaoAtual.valorIngressoMasc = Number(configuracao.valorIngressoMasc);
+            configuracaoAtual.valorIngressoFemin = Number(configuracao.valorIngressoFemin);
+            mostrarMensagem("msg-ingresso", "Valores de ingresso salvos com sucesso.", "sucesso");
+            carregarTelaComDadosAtuais();
+        })
+        .catch(error => {
+            console.error("Erro ao salvar ingresso:", error);
+            mostrarMensagem("msg-ingresso", "Não foi possível salvar os valores de ingresso.", "erro");
+        });
 }
 
 function liberarAtendimentos() {
@@ -52,11 +109,26 @@ function liberarAtendimentos() {
         return;
     }
 
-    // Simula o ConfiguracaoService.alterarModoOperacao(ModoOperacao.ATENDIMENTO)
-    configuracaoAtual.modoOperacao = "ATENDIMENTO";
-    atualizarIndicadorModo();
+    fetch(`${API_BASE_URL}/api/configuracao/operation?op=ATENDIMENTO`, {
+        method: "PUT",
+        headers: authHeader()
+    })
+        .then(async response => {
+            if (!response.ok) {
+                throw new Error(await response.text());
+            }
 
-    mostrarMensagem("msg-liberacao", "Atendimentos liberados a partir de " + formatarDataHora(data, hora) + ".", "sucesso");
+            return response.json();
+        })
+        .then(configuracao => {
+            configuracaoAtual.modoOperacao = configuracao.modoOperacao || "ATENDIMENTO";
+            atualizarIndicadorModo();
+            mostrarMensagem("msg-liberacao", "Atendimentos liberados a partir de " + formatarDataHora(data, hora) + ".", "sucesso");
+        })
+        .catch(error => {
+            console.error("Erro ao liberar atendimentos:", error);
+            mostrarMensagem("msg-liberacao", "Não foi possível liberar os atendimentos.", "erro");
+        });
 }
 
 function fecharAtendimentos() {
@@ -68,11 +140,26 @@ function fecharAtendimentos() {
         return;
     }
 
-    // Simula o ConfiguracaoService.alterarModoOperacao(ModoOperacao.GESTAO)
-    configuracaoAtual.modoOperacao = "GESTAO";
-    atualizarIndicadorModo();
+    fetch(`${API_BASE_URL}/api/configuracao/operation?op=GESTAO`, {
+        method: "PUT",
+        headers: authHeader()
+    })
+        .then(async response => {
+            if (!response.ok) {
+                throw new Error(await response.text());
+            }
 
-    mostrarMensagem("msg-fechamento", "Atendimentos fechados a partir de " + formatarDataHora(data, hora) + ".", "sucesso");
+            return response.json();
+        })
+        .then(configuracao => {
+            configuracaoAtual.modoOperacao = configuracao.modoOperacao || "GESTAO";
+            atualizarIndicadorModo();
+            mostrarMensagem("msg-fechamento", "Atendimentos fechados a partir de " + formatarDataHora(data, hora) + ".", "sucesso");
+        })
+        .catch(error => {
+            console.error("Erro ao fechar atendimentos:", error);
+            mostrarMensagem("msg-fechamento", "Não foi possível fechar os atendimentos.", "erro");
+        });
 }
 
 // Converte "2026-06-28" + "14:30" em "28/06/2026 14:30", formato mais comum no Brasil
@@ -88,7 +175,7 @@ function mostrarMensagem(idElemento, texto, tipo) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
-    carregarTelaComDadosAtuais();
+    carregarConfiguracao();
 
     document.getElementById("btn-salvar-ingresso").addEventListener("click", salvarIngresso);
     document.getElementById("btn-liberar").addEventListener("click", liberarAtendimentos);
