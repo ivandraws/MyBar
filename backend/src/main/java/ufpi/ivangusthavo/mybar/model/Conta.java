@@ -16,9 +16,9 @@ public class Conta {
     @Column(name = "numero", nullable = false)
     private Integer numero;
 
-    // true = Aberta, false = Fechada
-    @Column(name = "status", nullable = false)
-    private Boolean status = true;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "status")
+    private StatusConta status;
 
     @Column(name = "data_abertura", nullable = false, updatable = false)
     private LocalDate dataAbertura;
@@ -61,11 +61,11 @@ public class Conta {
         this.numero = numero;
     }
 
-    public Boolean getStatus() {
+    public StatusConta getStatus() {
         return status;
     }
 
-    public void setStatus(Boolean status) {
+    public void setStatus(StatusConta status) {
         this.status = status;
     }
 

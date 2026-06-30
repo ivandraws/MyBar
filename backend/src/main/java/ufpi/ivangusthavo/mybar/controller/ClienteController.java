@@ -39,4 +39,10 @@ public class ClienteController {
         clienteService.deletarCliente(id);
         return ResponseEntity.noContent().build();
     }
+    @GetMapping("/cpf/{cpf}")
+    public ResponseEntity<Cliente> buscarPorCpf(@PathVariable String cpf) {
+        return dao.findByCpf(cpf)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
 }

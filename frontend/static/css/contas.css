@@ -1,0 +1,70 @@
+/* ===================== Tela de Contas ===================== */
+
+/* Botões de filtro (Todas / Abertas / Fechadas) */
+.btn-filtro {
+    background-color: var(--bg-white);
+    border: 1px solid #e0ddd6;
+    color: var(--brand-taupe);
+    font-weight: 500;
+    border-radius: 0.5rem;
+    padding: 0.4rem 1rem;
+    transition: all 0.2s ease;
+}
+
+.btn-filtro:hover {
+    background-color: var(--bg-offwhite);
+}
+
+.btn-filtro.active {
+    background-color: var(--brand-terracotta);
+    border-color: var(--brand-terracotta);
+    color: #FFFFFF;
+}
+
+/* Badge de status da conta */
+.badge-status {
+    padding: 0.4em 0.9em;
+    border-radius: 1rem;
+    font-weight: 500;
+    font-size: 0.8rem;
+}
+
+.badge-aberta {
+    background-color: rgba(92, 138, 107, 0.15);
+    color: #5C8A6B;
+}
+
+.badge-fechada {
+    background-color: rgba(148, 132, 102, 0.15);
+    color: var(--brand-taupe);
+}
+
+/* Botões de ação na tabela (Ver / Lançar / Fechar) */
+.btn-acao {
+    font-size: 0.85rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: 0.4rem;
+}
+
+.btn-ver {
+    border: 1px solid #ced4da;
+    background-color: #FFFFFF;
+    color: var(--text-dark);
+}
+
+.btn-lancar {
+    background-color: var(--brand-terracotta);
+    border: 1px solid var(--brand-terracotta);
+    color: #FFFFFF;
+}
+
+.btn-fechar {
+    background-color: #FFFFFF;
+    border: 1px solid #B02020;
+    color: #B02020;
+}
+
+.btn-fechar:hover {
+    background-color: #B02020;
+    color: #FFFFFF;
+}

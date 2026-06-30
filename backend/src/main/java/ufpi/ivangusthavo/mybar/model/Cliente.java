@@ -14,6 +14,8 @@ public class Cliente {
     private String nome;
     @Column(name = "telefone")
     private String telefone;
+
+    @Enumerated(EnumType.STRING)
     @Column(name = "sexo")
     private Sexo sexo;
     public Cliente(){

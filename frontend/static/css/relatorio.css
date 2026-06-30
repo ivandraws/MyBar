@@ -1,0 +1,18 @@
+/* ===================== Tela de Relatório ===================== */
+
+.linha-detalhe {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--bg-offwhite);
+    color: var(--text-dark);
+}
+
+.linha-detalhe:last-child {
+    border-bottom: none;
+}
+
+.linha-detalhe strong {
+    color: var(--brand-terracotta);
+}

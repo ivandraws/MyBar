@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Usuários</title>
+    <link rel="stylesheet" href="./assets/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" href="./static/css/style.css">
+    <link rel="stylesheet" href="./static/css/contas.css">
+    <link rel="stylesheet" href="./static/css/usuarios.css">
+</head>
+<body>
+    <div class="app-wrapper d-flex vh-100">
+
+        <!-- ===================== SIDEBAR ===================== -->
+        <aside class="sidebar bg-white border-end d-flex flex-column" style="width: 250px; flex-shrink: 0;">
+            <div class="p-4 d-flex align-items-center gap-3 border-bottom">
+                <div class="bg-brand text-white rounded d-flex justify-content-center align-items-center" style="width: 40px; height: 40px; font-weight: bold;">MB</div>
+                <div>
+                    <h5 class="m-0 fw-bold text-dark">MyBar</h5>
+                    <small class="text-taupe">Gerenciador</small>
+                </div>
+            </div>
+
+            <nav class="flex-grow-1 p-3 d-flex flex-column gap-1">
+                <a href="./dashboard.html" class="nav-link py-2 px-3 rounded">Dashboard</a>
+                <a href="./contas.html" class="nav-link py-2 px-3 rounded">Contas</a>
+                <a href="./cardapio.html" class="nav-link py-2 px-3 rounded">Cardápio</a>
+                <a href="./cozinha.html" class="nav-link py-2 px-3 rounded">Cozinha</a>
+                <a href="./entregas.html" class="nav-link py-2 px-3 rounded">Entregas</a>
+                <a href="./configuracao.html" class="nav-link py-2 px-3 rounded">Configuração</a>
+                <a href="./usuarios.html" class="nav-link active py-2 px-3 rounded">Usuários</a>
+                <a href="./relatorio.html" class="nav-link py-2 px-3 rounded">Relatório</a>
+            </nav>
+
+            <div class="p-3 border-top d-flex align-items-center gap-3">
+                <div id="user-avatar" class="bg-brand text-white rounded-circle d-flex justify-content-center align-items-center fw-bold" style="width: 36px; height: 36px; flex-shrink: 0;">A</div>
+                <a href="#" onclick="logout(); return false;" title="Clique para sair">
+                <div>
+                    <span id="user-name" class="d-block fw-bold text-dark" style="font-size: 0.9rem;">Admin</span>
+                    <small id="user-role" class="text-taupe">Administrador</small>
+                </div></a>
+            </div>
+        </aside>
+
+        <!-- ===================== CONTEÚDO PRINCIPAL ===================== -->
+        <main class="d-flex flex-column flex-grow-1 overflow-hidden">
+
+            <header class="top-bar p-3 border-bottom d-flex align-items-center justify-content-between bg-white">
+                <div>
+                    <h3 class="fw-bold text-main mb-0">Gestão de Usuários</h3>
+                    <small class="text-taupe">Cadastro de garçons, cozinha, atendentes e administradores</small>
+                </div>
+            </header>
+
+            <div class="d-flex flex-column flex-grow-1 overflow-auto p-3 gap-3">
+
+                <!-- Pesquisa por Nome -->
+                <div class="card border-0 shadow-sm rounded-4 p-3">
+                    <div class="row g-3 align-items-end">
+                        <div class="col-md-4">
+                            <label class="form-label text-muted small fw-medium mb-1">Nome</label>
+                            <input type="text" id="filtro-nome" class="form-control" placeholder="Ex: João">
+                        </div>
+                        <div class="col-md-2">
+                            <button type="button" id="btn-pesquisar" class="btn btn-brand fw-semibold w-100">Pesquisar</button>
+                        </div>
+                        <div class="col-md-2 ms-auto">
+                            <button type="button" id="btn-novo-usuario" class="btn btn-brand fw-semibold w-100">+ Novo Usuário</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tabela de Usuários -->
+                <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+                    <div class="card-body p-0">
+                        <table class="table align-middle mb-0">
+                            <thead>
+                                <tr class="text-taupe small">
+                                    <th class="ps-4">Código</th>
+                                    <th>Nome</th>
+                                    <th>Tipo</th>
+                                    <th>Comandos</th>
+                                </tr>
+                            </thead>
+                            <tbody id="usuarios-tbody">
+                                <!-- O JavaScript vai preencher essas linhas -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Formulário: Inclusão / Alteração de Usuário -->
+                <div class="card border-0 shadow-sm rounded-4 p-3 d-none" id="card-form-usuario">
+                    <h6 class="fw-bold text-main mb-3" id="titulo-form-usuario">Novo Usuário</h6>
+
+                    <div class="row g-3">
+                        <div class="col-md-2">
+                            <label class="form-label text-muted small fw-medium mb-1">Código*</label>
+                            <input type="number" id="form-codigo" class="form-control" placeholder="Ex: 10">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label text-muted small fw-medium mb-1">Nome*</label>
+                            <input type="text" id="form-nome" class="form-control" placeholder="Ex: João Limão">
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label text-muted small fw-medium mb-1">Tipo*</label>
+                            <select id="form-tipo" class="form-select">
+                                <option value="ADMIN">Administrador</option>
+                                <option value="COZINHA">Cozinha</option>
+                                <option value="GARCOM">Garçom</option>
+                                <option value="ATENDENTE_BALCAO">Atendente Balcão</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label text-muted small fw-medium mb-1">Email*</label>
+                            <input type="email" id="form-email" class="form-control" placeholder="joao@limao.com">
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label text-muted small fw-medium mb-1">Senha* (4 dígitos)</label>
+                            <input type="password" id="form-senha" class="form-control" placeholder="••••" maxlength="4" inputmode="numeric">
+                            <div id="erro-senha" class="text-danger small mt-1 d-none"></div>
+                        </div>
+                        <div class="col-md-3 d-flex align-items-end gap-2">
+                            <button type="button" id="btn-salvar-usuario" class="btn btn-brand fw-semibold flex-grow-1">Salvar</button>
+                            <button type="button" id="btn-cancelar-usuario" class="btn btn-ver">Cancelar</button>
+                        </div>
+                    </div>
+
+                    <div id="erro-geral-usuario" class="text-danger small mt-2 d-none"></div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <script src="./assets/bootstrap/bootstrap.bundle.js"></script>
+    <script src="./static/js/script.js"></script>
+    <script src="./static/js/usuarios.js"></script>
+</body>
+</html>

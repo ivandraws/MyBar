@@ -1,0 +1,42 @@
+/* ===================== Tela de Configuração ===================== */
+
+.status-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.status-dot.gestao     { background-color: var(--brand-taupe); }
+.status-dot.atendimento { background-color: #5C8A6B; }
+
+.btn-liberar {
+    background-color: #5C8A6B;
+    border: 1px solid #5C8A6B;
+    color: #FFFFFF;
+}
+
+.btn-liberar:hover {
+    background-color: #4a7257;
+    border-color: #4a7257;
+    color: #FFFFFF;
+}
+
+.btn-fechar-atendimento {
+    background-color: #FFFFFF;
+    border: 1px solid #B02020;
+    color: #B02020;
+}
+
+.btn-fechar-atendimento:hover {
+    background-color: #B02020;
+    color: #FFFFFF;
+}
+
+.msg-sucesso {
+    color: #5C8A6B;
+}
+
+.msg-erro {
+    color: #B02020;
+}
