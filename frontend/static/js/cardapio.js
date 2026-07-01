@@ -151,18 +151,6 @@ function injetarModais() {
                                 <input type="time" id="campo-hora" class="form-control">
                             </div>
                         </div>
-                        <hr>
-                        <p class="text-taupe small mb-2">Autenticação do Garçom</p>
-                        <div class="row g-2">
-                            <div class="col-6">
-                                <label class="form-label fw-semibold">Código *</label>
-                                <input type="text" id="campo-codigo-garcom" class="form-control" placeholder="1010">
-                            </div>
-                            <div class="col-6">
-                                <label class="form-label fw-semibold">Senha *</label>
-                                <input type="password" id="campo-senha-garcom" class="form-control" placeholder="••••">
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
