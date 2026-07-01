@@ -1,4 +1,5 @@
 // 1. Dados simulados (Mock Data)
+const API_DATA = "http://localhost:8080"
 const dashboardData = {
     kpis: {
         contas: { valor: 24, delta: "+3 abertas agora" },

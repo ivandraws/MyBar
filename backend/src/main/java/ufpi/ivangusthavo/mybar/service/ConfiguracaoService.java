@@ -28,15 +28,13 @@ public class ConfiguracaoService {
             return repository.save(configInicial);
         });
     }
-@Transactional
-public Configuracao atualizarValoresIngresso(BigDecimal masc, BigDecimal fem) {
+    @Transactional
+    public Configuracao atualizarValoresIngresso(BigDecimal masc, BigDecimal fem) {
     Configuracao config = getConfig();
     config.setValorIngressoMasc(masc);
     config.setValorIngressoFemin(fem);
-    config.setData(LocalDate.now());
-    config.setHora(LocalTime.now());
     return repository.save(config);
-}
+    }
 
     @Transactional
     public Configuracao alterarModoOperacao(ModoOperacao novoModo) {

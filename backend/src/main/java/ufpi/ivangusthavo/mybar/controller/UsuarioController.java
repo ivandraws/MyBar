@@ -12,7 +12,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/usuario")
+@RequestMapping("/usuarios")
 @CrossOrigin("*")
 public class UsuarioController {
 
@@ -32,10 +32,10 @@ public class UsuarioController {
                 .toList();
         return ResponseEntity.ok(lista);
     }
-    @PostMapping
-    public ResponseEntity<Usuario> criarUsuario(@RequestBody RegisterDTO user)
+    @PostMapping("/{id}")
+    public ResponseEntity<Usuario> criarUsuario(@PathVariable Integer id, @RequestBody RegisterDTO user)
     {
-        return ResponseEntity.status(201).body(usuarioService.criarUsuario(user));
+        return ResponseEntity.status(201).body(usuarioService.criarUsuario(id,user));
     }
     @PutMapping("/{id}")
     public ResponseEntity<Usuario> editarUsuario(@PathVariable Integer id, @RequestBody RegisterDTO user)

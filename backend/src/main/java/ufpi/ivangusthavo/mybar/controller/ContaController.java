@@ -51,4 +51,10 @@ public class ContaController {
     public ResponseEntity<List<Conta>> listarContas() {
         return ResponseEntity.ok(contaService.listarContas());
     }
+
+    @GetMapping("/count")
+    public ResponseEntity<Long> contarContas()
+    {
+        return ResponseEntity.status(200).body(contaService.contarContas());
+    }
 }

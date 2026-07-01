@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import ufpi.ivangusthavo.mybar.model.Conta;
 import ufpi.ivangusthavo.mybar.model.StatusConta;
+import ufpi.ivangusthavo.mybar.model.Usuario;
 import ufpi.ivangusthavo.mybar.repository.IConta;
+import ufpi.ivangusthavo.mybar.repository.InterfaceUsuario;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -22,11 +24,15 @@ public class ContaService {
     @Autowired
     private UsuarioService usuarioService;
 
+    @Autowired
+    private InterfaceUsuario usuarioRepository;
+
     @Transactional
     public Conta abrirConta(Conta novaConta, String codigoGarcom, String senha) {
 
         // 1. VALIDAR — senha do garçom
-        usuarioService.verificarSenhaGarcom(codigoGarcom, senha);
+        Usuario garcom = usuarioService.autenticarGarcom(codigoGarcom, senha);
+        novaConta.setGarconAbertura(usuarioRepository.getReferenceById(garcom.getCodigo()));
 
         // 2. VALIDAR — CPF já tem conta aberta?
         boolean cpfComContaAberta = iConta.existsByCliente_CpfAndStatus(
@@ -64,7 +70,7 @@ public class ContaService {
     public Conta alterarConta(Conta contaAlterada, String codigoGarcom, String senha) {
 
         // 1. VALIDAR — senha do garçom
-        usuarioService.verificarSenhaGarcom(codigoGarcom, senha);
+        Usuario garcom = usuarioService.autenticarGarcom(codigoGarcom, senha);
 
         // 2. BUSCAR — conta existe?
         Conta contaExistente = buscarConta(contaAlterada.getId());
@@ -82,6 +88,7 @@ public class ContaService {
         // 4. PROCESSAR — atualiza campos permitidos
         contaExistente.setNumero(contaAlterada.getNumero());
         contaExistente.setCliente(contaAlterada.getCliente());
+        contaExistente.setGarconAbertura(usuarioRepository.getReferenceById(garcom.getCodigo()));
 
         // 5. SALVAR
         return iConta.save(contaExistente);
@@ -101,5 +108,10 @@ public class ContaService {
 
         // 3. SALVAR
         iConta.delete(conta);
+    }
+
+    public Long contarContas()
+    {
+        return iConta.count();
     }
 }

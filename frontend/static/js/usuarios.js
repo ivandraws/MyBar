@@ -197,7 +197,7 @@ async function salvarUsuario() {
     try {
         const method = codigoEmEdicao === null ? "POST" : "PUT";
 
-        const response = await fetch(`${API_BASE_URL}/usuarios`, {
+        const response = await fetch(`${API_BASE_URL}/usuarios/${codigo}`, {
             method: method,
             headers: authHeader(),
             body: JSON.stringify(body)
@@ -226,24 +226,29 @@ async function visualizarUsuario(codigo) {
 }
 
 async function excluirUsuario(codigo) {
-    const confirmar = confirm("Tem certeza que deseja excluir este usuário?");
-    if (!confirmar) return;
+    if (codigo == 1) {
+        alert("Não é permitido deletar o administrador!")
+    }
+    else{
+        const confirmar = confirm("Tem certeza que deseja excluir este usuário?");
+        if (!confirmar) return;
 
-    try {
-        const response = await fetch(`${API_BASE_URL}/usuarios/${codigo}`, {
-            method: "DELETE",
-            headers: authHeader()
-        });
+        try {
+            const response = await fetch(`${API_BASE_URL}/usuarios/${codigo}`, {
+                method: "DELETE",
+                headers: authHeader()
+            });
 
-        if (!response.ok) {
-            alert("Não foi possível excluir o usuário.");
-            return;
+            if (!response.ok) {
+                alert("Não foi possível excluir o usuário.");
+                return;
+            }
+
+            pesquisarUsuarios();
+
+        } catch (error) {
+            alert("Erro ao conectar com o servidor.");
         }
-
-        pesquisarUsuarios();
-
-    } catch (error) {
-        alert("Erro ao conectar com o servidor.");
     }
 }
 

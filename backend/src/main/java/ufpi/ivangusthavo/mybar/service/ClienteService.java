@@ -8,28 +8,29 @@ import ufpi.ivangusthavo.mybar.model.Cliente;
 import ufpi.ivangusthavo.mybar.repository.InterfaceCliente; // Lembre de renomear a InterfaceCliente
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class ClienteService {
 
     @Autowired
-    private InterfaceCliente interfaceClienteliente;
+    private InterfaceCliente interfaceCliente;
 
     public List<Cliente> listarClientes() {
-        return interfaceClienteliente.findAll();
+        return interfaceCliente.findAll();
     }
 
     public Cliente buscarPorId(Long id) {
-        return interfaceClienteliente.findById(id)
+        return interfaceCliente.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente não encontrado"));
     }
 
     public Cliente incluirCliente(Cliente cliente) {
         // Verifica se o CPF já está cadastrado para evitar erro 500 do banco
-        if (interfaceClienteliente.findByCpf(cliente.getCpf()).isPresent()) {
+        if (interfaceCliente.findByCpf(cliente.getCpf()).isPresent()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Já existe um cliente cadastrado com este CPF.");
         }
-        return interfaceClienteliente.save(cliente);
+        return interfaceCliente.save(cliente);
     }
 
     public Cliente editarCliente(Long id, Cliente clienteAtualizado) {
@@ -41,7 +42,7 @@ public class ClienteService {
         clienteExistente.setSexo(clienteAtualizado.getSexo());
         // Obs: Não atualizamos o CPF, pois o documento diz que é alterável apenas na inclusão.
 
-        return interfaceClienteliente.save(clienteExistente);
+        return interfaceCliente.save(clienteExistente);
     }
 
     public void deletarCliente(Long id) {
@@ -50,6 +51,10 @@ public class ClienteService {
         // TODO: Futuramente, verificar se o cliente tem contas atreladas antes de deletar
         // Se tiver, lançar um erro ou fazer soft delete
 
-        interfaceClienteliente.delete(cliente);
+        interfaceCliente.delete(cliente);
+    }
+
+    public Optional<Cliente> findCpf(String cpf){
+        return interfaceCliente.findByCpf(cpf);
     }
 }

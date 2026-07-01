@@ -26,8 +26,8 @@ public class UsuarioService {
         return lista;
     }
 
-    public Usuario criarUsuario(RegisterDTO data){
-        if (repository.existsById(data.codigo())){
+    public Usuario criarUsuario(Integer id, RegisterDTO data){
+        if (repository.existsById(id)){
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "O código de usuário está em uso");
         }
         String senhaCriptografada = new BCryptPasswordEncoder().encode(data.password());
@@ -66,7 +66,7 @@ public class UsuarioService {
         return true;
     }
 
-    public void verificarSenhaGarcom(String codigoStr, String senha) {
+    public Usuario autenticarGarcom(String codigoStr, String senha) {
         int codigo;
         try {
             codigo = Integer.parseInt(codigoStr);
@@ -80,6 +80,12 @@ public class UsuarioService {
         if (!encoder.matches(senha, usuario.getSenha())) {
             throw new IllegalArgumentException("Senha do garçom inválida.");
         }
+
+        return usuario;
+    }
+
+    public void verificarSenhaGarcom(String codigoStr, String senha) {
+        autenticarGarcom(codigoStr, senha);
     }
 
     // Subfluxo do documento — verifica senha do administrador pelo email
