@@ -109,4 +109,9 @@ public class ContaService {
         // 3. SALVAR
         iConta.delete(conta);
     }
+
+    public Long contarContas()
+    {
+        return iConta.count();
+    }
 }
