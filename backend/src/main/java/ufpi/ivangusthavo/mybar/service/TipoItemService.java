@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 import ufpi.ivangusthavo.mybar.model.TipoItem;
+import ufpi.ivangusthavo.mybar.model.TipoItemDTO;
 import ufpi.ivangusthavo.mybar.repository.ITipoItem;
 import ufpi.ivangusthavo.mybar.repository.ItemCardapioRepository;
 
@@ -43,6 +44,16 @@ public class TipoItemService {
         // Como o Persistable lida com a flag isNovo internamente,
         // o Spring Data JPA saberá fazer INSERT ou UPDATE corretamente.
         return tipoItemRepository.save(tipoItem);
+    }
+
+    @Transactional
+    public TipoItem editar(Integer id, TipoItemDTO data){
+        TipoItem tipoItemExistente = tipoItemRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "TipoItem não encontrado"));
+        tipoItemExistente.setDescricao(data.descricao());
+        tipoItemExistente.setCozinha(data.cozinha());
+        tipoItemExistente.setGorjeta(data.gorjeta());
+        return tipoItemRepository.save(tipoItemExistente);
     }
 
     @Transactional

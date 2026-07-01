@@ -1,9 +1,11 @@
 package ufpi.ivangusthavo.mybar.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import ufpi.ivangusthavo.mybar.model.TipoItem;
+import ufpi.ivangusthavo.mybar.model.TipoItemDTO;
 import ufpi.ivangusthavo.mybar.service.TipoItemService;
 
 import java.util.List;
@@ -12,6 +14,7 @@ import java.util.List;
 @RequestMapping("/api/tipos-item")
 public class TipoItemController {
 
+    @Autowired
     private final TipoItemService tipoItemService;
 
     public TipoItemController(TipoItemService tipoItemService) {
@@ -41,12 +44,12 @@ public class TipoItemController {
 
     // PUT /api/tipos-item/10
     @PutMapping("/{codigo}")
-    public ResponseEntity<TipoItem> atualizar(@PathVariable Integer codigo, @RequestBody TipoItem tipoItem) {
+    public ResponseEntity<TipoItem> atualizar(@PathVariable Integer codigo, @RequestBody TipoItemDTO tipoItem) {
         // Garante que o código da URL é o mesmo do objeto a ser alterado
-        tipoItem.setCodigo(codigo);
+        // tipoItem.setCodigo(codigo);
         // O Hibernate fará o UPDATE porque o ID já existe
-        TipoItem tipoAtualizado = tipoItemService.salvar(tipoItem);
-        return ResponseEntity.ok(tipoAtualizado);
+        
+        return ResponseEntity.ok(tipoItemService.editar(codigo, tipoItem));
     }
 
     // DELETE /api/tipos-item/10

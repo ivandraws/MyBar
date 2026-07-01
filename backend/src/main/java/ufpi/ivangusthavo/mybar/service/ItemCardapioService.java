@@ -2,10 +2,13 @@ package ufpi.ivangusthavo.mybar.service;
 
 import ufpi.ivangusthavo.mybar.model.ItemCardapio;
 import ufpi.ivangusthavo.mybar.repository.ItemCardapioRepository;
+import ufpi.ivangusthavo.mybar.repository.ItemContaRepository; // Novo import
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
+import ufpi.ivangusthavo.mybar.model.TipoItem;
+import ufpi.ivangusthavo.mybar.repository.ITipoItem;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -14,9 +17,15 @@ import java.util.stream.Collectors;
 public class ItemCardapioService {
 
     private final ItemCardapioRepository itemCardapioRepository;
+    private final ItemContaRepository itemContaRepository; // Nova dependência
+    private final ITipoItem tipoItemRepository;
 
-    public ItemCardapioService(ItemCardapioRepository itemCardapioRepository) {
+    // Construtor atualizado com a injeção do ItemContaRepository
+    public ItemCardapioService(ItemCardapioRepository itemCardapioRepository, ItemContaRepository itemContaRepository, ITipoItem tipoItemRepository) {
         this.itemCardapioRepository = itemCardapioRepository;
+        this.itemContaRepository = itemContaRepository;
+        this.tipoItemRepository = tipoItemRepository;
+
     }
 
     public List<ItemCardapio> pesquisar(String descricao) {
@@ -37,6 +46,21 @@ public class ItemCardapioService {
 
     @Transactional
     public ItemCardapio salvar(ItemCardapio itemCardapio) {
+        // 2. A interceptação acontece aqui antes de salvar!
+
+        // Verifica se veio um TipoItem na requisição e se ele tem um ID informado
+        if (itemCardapio.getTipoItem() != null && itemCardapio.getTipoItem().getId() != null) {
+            Integer tipoId = itemCardapio.getTipoItem().getId();
+
+            // Vai no banco e busca o TipoItem gerenciado pelo Hibernate
+            TipoItem tipoGerenciado = tipoItemRepository.findById(tipoId)
+                    .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Tipo de Item com o ID " + tipoId + " não existe."));
+
+            // Substitui o objeto "solto" da memória pelo objeto rastreado do banco
+            itemCardapio.setTipoItem(tipoGerenciado);
+        }
+
+        // Agora o Hibernate reconhece a relação e salva sem disparar o erro 500
         return itemCardapioRepository.save(itemCardapio);
     }
 
@@ -44,7 +68,7 @@ public class ItemCardapioService {
     public void excluir(Integer codigo) {
         ItemCardapio item = buscarPorCodigo(codigo);
 
-        // TODO: Injetar ItemContaRepository no futuro para checar vínculos
+        // Validação real no banco de dados habilitada
         boolean possuiContasAssociadas = verificarSePossuiContasAssociadas(codigo);
 
         if (possuiContasAssociadas) {
@@ -56,7 +80,7 @@ public class ItemCardapioService {
     }
 
     private boolean verificarSePossuiContasAssociadas(Integer codigo) {
-        // Retorno temporário até criarmos a estrutura de Itens da Conta
-        return false;
+        // Agora o Spring Data vai ao banco verificar se esse item já foi pedido alguma vez
+        return itemContaRepository.existsByItemCardapioCodigo(codigo);
     }
 }

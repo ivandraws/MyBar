@@ -20,6 +20,9 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
 
+    public UsuarioController(UsuarioService usuarioService){
+        this.usuarioService = usuarioService;
+    }
 
     @GetMapping
     public ResponseEntity<List<UsuarioResponseDTO>> listarUsuarios() {
@@ -29,15 +32,15 @@ public class UsuarioController {
                 .toList();
         return ResponseEntity.ok(lista);
     }
-    @PostMapping
-    public ResponseEntity<Usuario> criarUsuario(@RequestBody RegisterDTO user)
+    @PostMapping("/{id}")
+    public ResponseEntity<Usuario> criarUsuario(@PathVariable Integer id, @RequestBody RegisterDTO user)
     {
-        return ResponseEntity.status(201).body(usuarioService.criarUsuario(user));
+        return ResponseEntity.status(201).body(usuarioService.criarUsuario(id,user));
     }
-    @PutMapping
-    public ResponseEntity<Usuario> editarUsuario(@RequestBody RegisterDTO user)
+    @PutMapping("/{id}")
+    public ResponseEntity<Usuario> editarUsuario(@PathVariable Integer id, @RequestBody RegisterDTO user)
     {
-        return ResponseEntity.ok(usuarioService.editarUsuario(user));
+        return ResponseEntity.ok(usuarioService.editarUsuario(id, user));
     }
     @DeleteMapping("/{id}")
     public ResponseEntity<?> removerUsuario(@PathVariable Integer id)

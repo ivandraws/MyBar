@@ -35,6 +35,11 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/auth/login").permitAll()
                         .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 
+                        
+                        //Request de debug
+                        .requestMatchers("/error").permitAll()
+                        //request de debug termina aqui
+                                       
                         // Usuários
                         .requestMatchers(HttpMethod.GET,  "/usuarios").hasRole("ADMIN")
                         .requestMatchers(HttpMethod.POST, "/usuarios").hasRole("ADMIN")
