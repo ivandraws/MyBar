@@ -73,16 +73,134 @@ function criarLinhaTabela(item) {
 let codigoEmEdicao = null;
 let itensCached = [];
 
-async function abrirFormularioNovo() {
-    codigoEmEdicao = null;
+function abrirFormularioNovo() {
     
+    contaEmEdicao = null;
+    document.getElementById("modal-titulo").textContent = "Nova Conta";
+    console.log("Novo item");
+    // SOLUÇÃO DEFINITIVA: Limpa os campos manualmente sem usar o .reset()
+    const campos = document.querySelectorAll("#form-item input, #form-item select");
+    campos.forEach(campo => {
+        if (campo.id === "campo-sexo") {
+            campo.value = "M"; // Volta o select para o padrão
+        } else {
+            campo.value = "";  // Limpa todos os outros campos de texto/número
+        }
+    });
+    
+    document.getElementById("campo-cpf").removeAttribute("readonly");
+    document.getElementById("campo-data").value = new Date().toISOString().split("T")[0];
+    document.getElementById("campo-hora").value = new Date().toTimeString().substring(0,5);
+    document.getElementById("info-cliente").classList.add("d-none");
+    document.getElementById("btn-salvar-conta").textContent = "Abrir Conta";
+    
+    const modal = new bootstrap.Modal(document.getElementById("modal-conta"));
+    modal.show();
+}
 
+// ── injeção dos modais no DOM ──────────────────────────────
+function injetarModais() {
+    const html = `
+    <!-- ÁREA DE ALERTAS -->
+    <div id="area-alerta" style="position:fixed;top:70px;right:20px;z-index:9999;min-width:320px;max-width:440px;"></div>
+
+    <!-- MODAL NOVO ITEM / EDIÇÃO -->
+    <div class="modal fade" id="modal-conta" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal-titulo">Nova Conta</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="form-item">
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Nome *</label>
+                            <input type="text" id="campo-cpf" class="form-control"
+                                   placeholder="Comida" maxlength="14">
+                            <div id="info-cliente" class="d-none"></div>
+                        </div>
+                        <div class="row g-2 mb-3">
+                            <div class="col-8">
+                                <label class="form-label fw-semibold">Nome *</label>
+                                <input type="text" id="campo-nome" class="form-control" placeholder="Nome completo">
+                            </div>
+                            <div class="col-4">
+                                <label class="form-label fw-semibold">Sexo *</label>
+                                <select id="campo-sexo" class="form-select">
+                                    <option value="M">Masculino</option>
+                                    <option value="F">Feminino</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-semibold">Telefone *</label>
+                            <input type="text" id="campo-telefone" class="form-control" placeholder="(86) 99999-9999">
+                        </div>
+                        <div class="row g-2 mb-3">
+                            <div class="col-4">
+                                <label class="form-label fw-semibold">Nº Conta *</label>
+                                <input type="number" id="campo-numero" class="form-control" placeholder="108" min="1" max="9999">
+                            </div>
+                            <div class="col-4">
+                                <label class="form-label fw-semibold">Data</label>
+                                <input type="date" id="campo-data" class="form-control">
+                            </div>
+                            <div class="col-4">
+                                <label class="form-label fw-semibold">Hora</label>
+                                <input type="time" id="campo-hora" class="form-control">
+                            </div>
+                        </div>
+                        <hr>
+                        <p class="text-taupe small mb-2">Autenticação do Garçom</p>
+                        <div class="row g-2">
+                            <div class="col-6">
+                                <label class="form-label fw-semibold">Código *</label>
+                                <input type="text" id="campo-codigo-garcom" class="form-control" placeholder="1010">
+                            </div>
+                            <div class="col-6">
+                                <label class="form-label fw-semibold">Senha *</label>
+                                <input type="password" id="campo-senha-garcom" class="form-control" placeholder="••••">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btn-cancelar-modal" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" id="btn-salvar-conta" class="btn btn-brand">Abrir Conta</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL EXCLUSÃO -->
+    <div class="modal fade" id="modal-exclusao" tabindex="-1">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Confirmar Exclusão</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p id="msg-exclusao" class="mb-0"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" id="btn-confirmar-exclusao" class="btn btn-danger btn-sm">Excluir</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    `;
+
+    document.body.insertAdjacentHTML("beforeend", html);
 }
 
 
 
 
 document.addEventListener("DOMContentLoaded", function () {
+    injetarModais();
     document.getElementById("btn-pesquisar").addEventListener("click", pesquisarItens);
     document.getElementById("btnNewItem").addEventListener("click", abrirFormularioNovo)
 
